@@ -1,0 +1,70 @@
+@import url('../fonts/Vazir.css');
+
+html {
+    font-family:Vazir,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background-color: #121212;
+    line-height: 2;
+    direction: rtl;
+    text-align: right;
+    font-family:Vazir,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+.nav-svg-icon {
+	width: 2rem;
+	height: 2rem;
+    padding-bottom: 5px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+hr {
+    border-color: #2AA198;
+}
+
+#logo {
+    border-left: solid 3px rgba(0,255,0,0.75);
+    white-space: nowrap;
+    overflow: hidden;    
+    font-family: Vazir,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+/* Animation */
+#logo {
+    animation: animated-text 1s steps(10,end) 1s 1 normal both,
+                animated-cursor 1000ms steps(2,end) infinite;
+}
+
+/* text animation */
+
+@keyframes animated-text{
+    from{width: 0;}
+    to{width: 105px;}
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor{
+    from{border-left-color: rgba(0,255,0,.75);}
+    to{border-left-color: transparent;}
+}
+
+img {
+	max-width: 100%;
+}
+
+code {
+	display: inline-block;
+	padding: 0 0.5em;
+	line-height: 1.4em;
+	border-radius: 3px;
+}
+
+.mini-logo {
+	height: 22px;
+	padding-bottom: 5px;
+}

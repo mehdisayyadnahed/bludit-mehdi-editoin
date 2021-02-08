@@ -1,0 +1,9 @@
+{
+	"plugin-data":
+	{
+		"name": "Open Graph",
+		"description": "Permets à n’importe quelle page web de devenir l’objet enrichi d’un graphe social. Par exemple, il est utilisé sur soroush pour permettre à une page web de bénéficier des mêmes fonctionnalités que n’importe quel autre objet sur soroush."
+	},
+	"set-a-default-image-for-content": "Set a default image for the content without pictures.",
+	"set-your-soroush-app-id": "Set your soroush App ID."
+}
