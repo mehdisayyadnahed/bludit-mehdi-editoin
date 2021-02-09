@@ -43,6 +43,7 @@
 					<div class="card-title">
 						<h3 class="text-primary"><?php echo $page->title(); ?></h3>
 					</div>
+					<br>
 					<!-- <p class="text-info card-subtitle mb-3"><?php #echo $page->date(); ?> - <?php #echo $L->get('Reading time') . ': ' . $page->readingTime(); ?></p> -->
 					<div class="card-text">
 						<?php //echo (substr(($page->contentBreak()),0, 200)." ... "); ?>
