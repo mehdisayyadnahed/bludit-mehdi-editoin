@@ -14,8 +14,9 @@
 		<h1 class="text-primary"><?php echo $page->title(); ?></h1>
 
 		<?php if (!$page->isStatic() && !$url->notFound()): ?>
+		<br/>
 		<!-- Creation date -->
-		<p class="text-info"><?php echo $page->date(); ?> <!-- - --> <?php #echo $L->get('Reading time') . ': ' . $page->readingTime() ?></p>
+		<!--<p class="text-info"><?php #echo $page->date(); ?> - <?php #echo $L->get('Reading time') . ': ' . $page->readingTime() ?></p>-->
 		<?php endif ?>
 
 		<!-- Full content -->
