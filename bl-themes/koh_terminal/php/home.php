@@ -41,7 +41,8 @@
 				<img src="" alt="">
 				<div class="card-body">
 					<div class="card-title">
-						<h3 class="text-primary"><?php echo $page->title(); ?></h3>
+					    <!-- <h3 class="text-primary"><?php #echo $page->title(); ?></h3> -->
+						<h3><a href="<?php echo $page->permalink(); ?>" class="text-primary"><?php echo $page->title(); ?></a></h3>
 					</div>
 					<br>
 					<!-- <p class="text-info card-subtitle mb-3"><?php #echo $page->date(); ?> - <?php #echo $L->get('Reading time') . ': ' . $page->readingTime(); ?></p> -->
