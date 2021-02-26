@@ -7,16 +7,16 @@ class Theme {
 		global $site;
 		$socialNetworks = array(
 			'instagram'=>'Instagram',
-			'eitaa'=>'Eitaa',
-			'twitter'=>'Twitter',
-			'soroush'=>'Soroush',
-			'github'=>'GitHub',
 			'rubika'=>'Rubika',
-			'youtube'=>'YouTube',
-			'virgool'=>'Virgool',
-			'facebook'=>'Facebook',
-			'aparat'=>'Aparat',
 			'telegram'=>'Telegram',
+			'eitaa'=>'Eitaa',
+			'github'=>'GitHub',
+			'soroush'=>'Soroush',
+			'twitter'=>'Twitter',
+			'virgool'=>'Virgool',
+			'youtube'=>'YouTube',
+			'aparat'=>'Aparat',
+			'facebook'=>'Facebook',
 			'email'=>'Email'
 		);
 
