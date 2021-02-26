@@ -1,18 +1,18 @@
-@import url('https://cdn.fontcdn.ir/Font/Persian/Yekan/Yekan.css'); 
+@import url('/bl-fonts/Vazir/Vazir.css');
 
 
 html {
 	height: 100%;
 	font-size: 0.9rem;
 	background: #fcfcfc;
+	font-family:Vazir,Tahoma,Geneva,Verdana,sans-serif;
 }
 
 body {
 	background: #fcfcfc;
 	direction: rtl;
 	text-align:right;
-	font-family: 'Yekan';
-	
+	font-family:Vazir,Tahoma,Geneva,Verdana,sans-serif;
 }
 
 /* Prevent events in iframes */
