@@ -395,10 +395,10 @@ function install($adminPassword, $timezone)
 		'dateFormat'=>'j F Y',
 		'extremeFriendly'=>true,
 		'autosaveInterval'=>2,
-		'titleFormatHomepage'=>'{{site-slogan}} | {{site-title}}',
-		'titleFormatPages'=>'{{page-title}} | {{site-title}}',
-		'titleFormatCategory'=>'{{category-name}} | {{site-title}}',
-		'titleFormatTag'=>'{{tag-name}} | {{site-title}}',
+		'titleFormatHomepage'=>'{{site-title}} | {{site-slogan}}',
+		'titleFormatPages'=>'{{site-title}} | {{page-title}}',
+		'titleFormatCategory'=>'{{site-title}} | {{category-name}}',
+		'titleFormatTag'=>'{{site-title}} | {{tag-name}}',
 		'imageRestrict'=>true,
 		'imageRelativeToAbsolute'=>false
 	);
