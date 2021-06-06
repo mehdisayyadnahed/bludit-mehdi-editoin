@@ -100,9 +100,24 @@ class User {
 		return $this->getValue('email');
 	}
 
-	public function registered()
+	public function date($format=false, $value)
 	{
-		return $this->getValue('registered');
+		$dateRaw = $this->getValue($value);
+		$format = "H:i:s - Y/m/d";
+
+		if(!function_exists("jdate")){
+			require_once PATH_KERNEL . "jdate.func.php";
+		}
+
+		$output = jdate($format, strtotime($dateRaw));
+		return ($output);
+		
+		return Date::format($dateRaw, DB_DATE_FORMAT, $format);
+	}
+
+	public function registered($format = false)
+	{
+		return $this->date($format, "registered");
 	}
 
 	public function twitter()
@@ -118,6 +133,11 @@ class User {
 	public function rubika()
 	{
 		return $this->getValue('rubika');
+	}
+
+	public function rss()
+	{
+		return $this->getValue('rss');
 	}
 
 	public function facebook()
@@ -179,6 +199,7 @@ class User {
 		$tmp['twitter'] 	= $this->twitter();
 		$tmp['soroush'] 	= $this->soroush();
 		$tmp['rubika'] 	= $this->rubika();
+		$tmp['rss'] 	= $this->rss();
 		$tmp['facebook'] 		= $this->facebook();
 		$tmp['virgool'] 	= $this->virgool();
 		$tmp['youtube'] 		= $this->youtube();

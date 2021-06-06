@@ -12,7 +12,7 @@
  * @package  None
  * @author   Kevin Fiol <fiolkevin@gmail.com>
  * @license  https://opensource.org/licenses/MIT  MIT License
- * @link     http://instagram.com/kevinfiol
+ * @link     http://github.com/kevinfiol
  */
 
 class Fuzz

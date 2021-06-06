@@ -10,14 +10,13 @@ class pluginSimpleStats extends Plugin {
 
 	public function init()
 	{
-		global $L;
 
 		// Fields and default values for the database of this plugin
 		$this->dbFields = array(
-			'label'=>$L->g('Visits'),
+			'label'=>'بازدیدها',
 			'numberOfDays'=>7,
 			'excludeAdmins'=>false,
-			'showContentStats'=>false
+			'showContentStats'=>true
 		);
 	}
 
@@ -25,19 +24,19 @@ class pluginSimpleStats extends Plugin {
 	{
 		global $L;
 
-		$html  = '<div class="alert alert-primary" role="alert">';
+		$html  = '<div class="primary-style" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Label').'</label>';
-		$html .= '<input id="jslabel" name="label" type="text" value="'.$this->getValue('label').'">';
+		$html .= '<input id="jslabel" class="form-control" name="label" type="text" value="'.$this->getValue('label').'">';
 		$html .= '<span class="tip">'.$L->get('This title is almost always used in the sidebar of the site').'</span>';
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Show Content Stats').'</label>';
-		$html .= '<select name="showContentStats">';
+		$html .= '<select name="showContentStats" class="form-control">';
 		$html .= '<option value="true" '.($this->getValue('showContentStats')===true?'selected':'').'>'.$L->get('Enabled').'</option>';
 		$html .= '<option value="false" '.($this->getValue('showContentStats')===false?'selected':'').'>'.$L->get('Disabled').'</option>';
 		$html .= '</select>';
@@ -80,15 +79,16 @@ class pluginSimpleStats extends Plugin {
 		$visitsToday = $this->visits($currentDate);
 		$uniqueVisitors = $this->uniqueVisitors($currentDate);
 
-$html = <<<EOF
-<div class="simple-stats-plugin">
-	<div class="my-4 pt-4 border-top">
-		<div class="ct-chart ct-perfect-fourth"></div>
-		<p class="legends visits-today">{$L->g('Visits today')}: $visitsToday</p>
-		<p class="legends unique-today">{$L->g('Unique visitors today')}: $uniqueVisitors</p>
-	</div>
-</div>
-EOF;
+        $data['title'] = $L->get('Statistics');
+        
+		$html = '<div class="simple-stats-plugin">
+			        <div class="my-4 pt-4 border-top">
+        				<h4 class="pb-2">'.$data["title"].'</h4>
+        				<div class="ct-chart ct-perfect-fourth"></div>
+        				<p class="legends visits-today">'.$L->g('Visits today').': '. $visitsToday.'</p>
+        				<p class="legends unique-today">'.$L->g('Unique visitors today').': '. $uniqueVisitors.'</p>
+			        </div>
+		        </div>';
 
 		$numberOfDays = $this->getValue('numberOfDays');
 		$numberOfDays = $numberOfDays - 1;
@@ -129,17 +129,16 @@ EOF;
 		 */
 		if ($this->getValue('showContentStats'))  {
 			global $pages, $categories, $tags;
-
-			$data['title'] = $L->get('Statistics');
+			
 			$data['tabTitleChart'] = $L->get('Chart');
 			$data['tabTitleTable'] = $L->get('Table');
 			$data['data'][$L->get('published')] 	= count($pages->getPublishedDB());
 			$data['data'][$L->get('static')] 	= count($pages->getStaticDB());
-			$data['data'][$L->get('drafts')]	= count($pages->getDraftDB());
-			$data['data'][$L->get('scheduled')] 	= count($pages->getScheduledDB());
 			$data['data'][$L->get('sticky')] 	= count($pages->getStickyDB());
+			$data['data'][$L->get('drafts')]	= count($pages->getDraftDB());
+			// $data['data'][$L->get('scheduled')] 	= count($pages->getScheduledDB());
 			$data['data'][$L->get('categories')]	= count($categories->keys());
-			$data['data'][$L->get('tags')] 		= count($tags->keys());
+			// $data['data'][$L->get('tags')] 		= count($tags->keys());
 			$html .= $this->renderContentStatistics($data);
 		}
 
@@ -221,36 +220,26 @@ EOF;
 	public function renderContentStatistics($data)
 	{
 		global $L;
-		$diskUsage = Filesystem::bytesToHumanFileSize(
-			Filesystem::getSize(PATH_ROOT)
-		);
+		$diskUsage = Filesystem::bytesToHumanFileSize(Filesystem::getSize(PATH_ROOT));
 
 		$html = '<div class="my-5 pt-4 border-top">';
-		$html .= "<h4 class='pb-2'>{$data['title']}</h4>";
 		$html .= '
-		<nav>
-		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-		    <a class="nav-item nav-link active" id="nav-stats-chart-tab" data-toggle="tab" href="#nav-stats-chart" role="tab" aria-controls="nav-stats-chart" aria-selected="true">' . $data['tabTitleChart'] .'</a>
-		    <a class="nav-item nav-link" id="nav-stats-table-tab" data-toggle="tab" href="#nav-stats-table" role="tab" aria-controls="nav-stats-table" aria-selected="false">' . $data['tabTitleTable'] .'</a>
-		  </div>
-		</nav>
 		<div class="tab-content my-2" id="nav-tabContent">
-		  <div class="tab-pane fade show active" id="nav-stats-chart" role="tabpanel" aria-labelledby="nav-stats-chart-tab">
-		  	<div class="ct-chart-content pt-2"></div>
-		  </div>
-		  <div class="tab-pane fade" id="nav-stats-table" role="tabpanel" aria-labelledby="nav-stats-table-tab">
+		
+		  <div class="tab-pane fade active show" id="nav-stats-table" role="tabpanel" aria-labelledby="nav-stats-table-tab">
 			<table class="table table-borderless table-sm table-striped mt-3">
-			  <tbody>';
-
+			  <tbody>
+			  <tr></tr>';
+	global $login;
+	if ($login->role()==='admin'){
 		$html .= "<tr><th>{$L->get('disk-usage')}</th><td>$diskUsage</td></tr>";
+	}
 		foreach ($data['data'] as $th => $td) {
 			$html .= "
 				<tr>
 					<th>$th</th>
 					<td>$td</td>
-				</tr>
-			";
-		}
+				</tr>"; }
 
 		$html .= '
 			  </tbody>
@@ -258,18 +247,8 @@ EOF;
 		  </div>
 		</div>
 
-		</div>
-
-		<script>
-		new Chartist.Bar(".ct-chart-content", {
-		  labels: ' . json_encode(array_keys($data['data'])) . ',
-		  series: ' . json_encode(array_values($data['data'])) . '
-		}, {
-		  distributeSeries: true
-		});
-		</script>';
+		</div>';
 
 		return $html;
 	}
-
 }

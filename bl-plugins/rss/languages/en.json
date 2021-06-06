@@ -4,6 +4,7 @@
 		"name": "RSS Feed",
 		"description": "This plugin generates an RSS feed of your site.<br>The feed has the URL https://example.com/rss.xml"
 	},
+	"amount-of-items": "Amount of items",
 	"amount-of-items-to-show-on-the-feed": "Amount of items to show on the feed.",
 	"rss-url": "RSS URL"
 }

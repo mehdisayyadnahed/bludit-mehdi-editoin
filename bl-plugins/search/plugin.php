@@ -9,9 +9,11 @@ class pluginSearch extends Plugin {
 	{
 		// Fields and default values for the database of this plugin
 		$this->dbFields = array(
-			'label'=>'Search',
-			'wordsToCachePerPage'=>800,
-			'showButtonSearch'=>false
+			'label'=>'',
+			'minChars'=>3,
+			'wordsToCachePerPage'=>3000,
+			'showButtonSearch'=>true,
+			"position"=>2
 		);
 	}
 
@@ -19,19 +21,24 @@ class pluginSearch extends Plugin {
 	{
 		global $L;
 
-		$html  = '<div class="alert alert-primary" role="alert">';
+		$html  = '<div class="primary-style" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Label').'</label>';
-		$html .= '<input name="label" type="text" value="'.$this->getValue('label').'">';
+		$html .= '<input name="label" class="form-control" type="text" value="'.$this->getValue('label').'">';
 		$html .= '<span class="tip">'.$L->get('This title is almost always used in the sidebar of the site').'</span>';
+		$html .= '</div>';
+
+		$html .= '<div>';
+		$html .= '<label>'.$L->get('minimum-number-of-character-when-searching').'</label>';
+		$html .= '<input name="minChars" class="form-control" type="text" value="'.$this->getValue('minChars').'">';
 		$html .= '</div>';
 
                 $html .= '<div>';
                 $html .= '<label>'.$L->get('Show button search').'</label>';
-                $html .= '<select name="showButtonSearch">';
+                $html .= '<select name="showButtonSearch" class="form-control">';
                 $html .= '<option value="true" '.($this->getValue('showButtonSearch')===true?'selected':'').'>'.$L->get('enabled').'</option>';
                 $html .= '<option value="false" '.($this->getValue('showButtonSearch')===false?'selected':'').'>'.$L->get('disabled').'</option>';
 		$html .= '</select>';
@@ -44,15 +51,27 @@ class pluginSearch extends Plugin {
 	// HTML for sidebar
 	public function siteSidebar()
 	{
+		$html  = $this->includeCSS('search-box.css');
+
 		global $L;
 
-		$html  = '<div class="plugin plugin-search">';
+		$html  .= '<br><div class="plugin plugin-search">';
 		$html .= '<h2 class="plugin-label">'.$this->getValue('label').'</h2>';
 		$html .= '<div class="plugin-content">';
-		$html .= '<input type="text" id="jspluginSearchText" /> ';
+		$html .= '<div class="table">';
+		$html .= '<div class="container" >';
+		$html .= '<div class="row justify-content-center" >';
+		$html .= '<div class="col-9" style="padding: 0px;">';
+		$html .= '<input type="text" placeholder="' . $L->get('Search') . '" id="jspluginSearchText" class="table-cell align-right search-box"/> ';
+		$html .= '</div>';
+		$html .= '<div style="padding-right: 2px;">';
 		if ($this->getValue('showButtonSearch')) {
-			$html .= '<input type="button" value="'.$L->get('Search').'" onClick="pluginSearch()" />';
+			$html .= '<input type="button" class="table-cell align-left btn btn-primary" value="'.$L->get('Search').'" onClick="pluginSearch()" />';
 		}
+		$html .= '</div>';
+		$html .= '</div>';
+		$html .= '</div>';
+		$html .= '</div>';
 		$html .= '</div>';
 		$html .= '</div>';
 
@@ -224,8 +243,8 @@ EOF;
 
 		// Inlcude Fuzz algorithm
 		require_once($this->phpPath().'vendors/fuzz.php');
-		$fuzz = new Fuzz($cache, 10, 1, true);
-		$results = $fuzz->search($text, 5);
+		$fuzz = new Fuzz($cache, 7, 1, true);
+		$results = $fuzz->search($text, $this->getValue('minChars'));
 
 		return(array_keys($results));
 	}

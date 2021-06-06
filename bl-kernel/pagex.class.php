@@ -112,17 +112,17 @@ class Page {
 			$format = $site->dateFormat();
 		}
 		
-// * this part, use for convert date to jalali date (jdate) *
-//
-// 		if(!function_exists("jdate")){
-// 			require_once PATH_KERNEL . "jdate.func.php";
-// 		}
+    // this part, use for convert date to jalali date (jdate)
+
+		if(!function_exists("jdate")){
+			require_once PATH_KERNEL . "jdate.func.php";
+		}
 // 		$numbers =  array(
 // 			"0" => '۰', "1" => '١', "2" => '٢', "3" => '٣', "4" => '۴',
 // 			"5" => '۵', "6" => '۶', "7" => '٧', "8" => '٨', "9" => '٩'
 // 		);
-// 		$output = jdate($format, strtotime($dateRaw));
-// 		return strtr($output, $numbers);
+		$output = jdate($format, strtotime($dateRaw));
+		return ($output); #strtr($output, $numbers);
 		
 		return Date::format($dateRaw, DB_DATE_FORMAT, $format);
 	}
@@ -535,16 +535,15 @@ class Page {
 		global $L;
 
 		$words = $this->content(true);
-		$words = strip_tags($words);
-		$words = str_word_count($words);
+		$words = count( explode(" ", strip_tags( $words ) ) );
 		$average = $words / 200;
 		$minutes = round($average);
 
-		if ($minutes>1) {
-			return $minutes.' '.$L->get('minutes');
-		}
+		#if ($minutes>1) {
+			return '~'.$minutes.' '.$L->get('minutes');
+		#}
 
-		return '~1 '.$L->get('minute');
+		#return '~1 '.$L->get('minute');
 	}
 
 	// Returns relative time (e.g. "1 minute ago")

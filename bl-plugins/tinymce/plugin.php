@@ -21,18 +21,18 @@ class pluginTinymce extends Plugin {
 		global $L;
 
 		$html  = '<div>';
-		$html .= '<label>'.$L->get('Toolbar top').'</label>';
-		$html .= '<input name="toolbar1" id="jstoolbar1" type="text" value="'.$this->getValue('toolbar1').'">';
+		$html .= '<label>'.$L->get('toolbar-top').'</label>';
+		$html .= '<input name="toolbar1" class="form-control" id="jstoolbar1" type="text" value="'.$this->getValue('toolbar1').'">';
 		$html .= '</div>';
 
 		$html .= '<div>';
-		$html .= '<label>'.$L->get('Toolbar bottom').'</label>';
-		$html .= '<input name="toolbar2" id="jstoolbar2" type="text" value="'.$this->getValue('toolbar2').'">';
+		$html .= '<label>'.$L->get('toolbar-bottom').'</label>';
+		$html .= '<input name="toolbar2" class="form-control" id="jstoolbar2" type="text" value="'.$this->getValue('toolbar2').'">';
 		$html .= '</div>';
 
 		$html .= '<div>';
-		$html .= '<label>'.$L->get('Plugins').'</label>';
-		$html .= '<input name="plugins" id="jsplugins" type="text" value="'.$this->getValue('plugins').'">';
+		$html .= '<label>'.$L->get('add-ons').'</label>';
+		$html .= '<input name="plugins" id="jsplugins" class="form-control" type="text" value="'.$this->getValue('plugins').'">';
 		$html .= '</div>';
 
 		return $html;
@@ -97,7 +97,8 @@ $html = <<<EOF
 		auto_focus: "jseditor",
 		element_format : "html",
 		entity_encoding : "raw",
-		skin: "oxide",
+		skin: "oxide-dark",
+		content_css: "dark",
 		schema: "html5",
 		statusbar: false,
 		menubar:false,
@@ -114,8 +115,7 @@ $html = <<<EOF
 		plugins: ["$plugins"],
 		toolbar1: "$toolbar1",
 		toolbar2: "$toolbar2",
-		language: "$lang",
-		content_css: "$content_css"
+		language: "$lang"
 	});
 
 </script>

@@ -6,7 +6,7 @@ class pluginMaintenanceMode extends Plugin {
 	{
 		$this->dbFields = array(
 			'enable'=>false,
-			'message'=>'وبسایت جهت تعمیر و نگهداری تا اطلاع ثانویه غیرفعال است، از شکیبایی شما سپاسگذاریم.'
+			'message'=>'متأسفانه سایت مشکل پیدا کرده، ولی دارم روش کار میکنم :)'
 		);
 	}
 
@@ -14,21 +14,21 @@ class pluginMaintenanceMode extends Plugin {
 	{
 		global $L;
 
-		$html  = '<div class="alert alert-primary" role="alert">';
+		$html  = '<div class="primary-style" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Enable maintenance mode').'</label>';
-		$html .= '<select name="enable">';
-		$html .= '<option value="true" '.($this->getValue('enable')===true?'selected':'').'>Enabled</option>';
-		$html .= '<option value="false" '.($this->getValue('enable')===false?'selected':'').'>Disabled</option>';
+		$html .= '<select name="enable" class="form-control">';
+		$html .= '<option value="true" '.($this->getValue('enable')===true?'selected':'').'>فعال</option>';
+		$html .= '<option value="false" '.($this->getValue('enable')===false?'selected':'').'>غیرفعال</option>';
 		$html .= '</select>';
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Message').'</label>';
-		$html .= '<input name="message" id="jsmessage" type="text" value="'.$this->getValue('message').'">';
+		$html .= '<input name="message" id="jsmessage" class="form-control" type="text" value="'.$this->getValue('message').'">';
 		$html .= '</div>';
 
 		return $html;
@@ -37,7 +37,7 @@ class pluginMaintenanceMode extends Plugin {
 	public function beforeAll()
 	{
 		if ($this->getValue('enable')) {
-			exit( $this->getValue('message') );
+			exit('<h2 style="padding-top: 20%; direction: rtl; text-align: right; text-align: center; ">' . $this->getValue('message') . '</h2>' );
 		}
 	}
 }

@@ -6,7 +6,7 @@ class pluginRSS extends Plugin {
 	{
 		// Fields and default values for the database of this plugin
 		$this->dbFields = array(
-			'numberOfItems'=>5
+			'numberOfItems'=>7
 		);
 	}
 
@@ -15,18 +15,18 @@ class pluginRSS extends Plugin {
 	{
 		global $L;
 
-		$html  = '<div class="alert alert-primary" role="alert">';
+		$html  = '<div class="primary-style" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('RSS URL').'</label>';
-		$html .= '<a href="'.Theme::rssUrl().'">'.Theme::rssUrl().'</a>';
+		$html .= '<a href="'.Theme::rssUrl().'" target="_blank" >'.Theme::rssUrl().'</a>';
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Amount of items').'</label>';
-		$html .= '<input id="jsnumberOfItems" name="numberOfItems" type="text" value="'.$this->getValue('numberOfItems').'">';
+		$html .= '<input id="jsnumberOfItems" name="numberOfItems" class="form-control" type="text" value="'.$this->getValue('numberOfItems').'">';
 		$html .= '<span class="tip">'.$L->get('Amount of items to show on the feed').'</span>';
 		$html .= '</div>';
 

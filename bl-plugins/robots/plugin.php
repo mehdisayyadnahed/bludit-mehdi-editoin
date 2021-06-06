@@ -11,13 +11,17 @@ class pluginRobots extends Plugin {
 
 	public function form()
 	{
-		$html  = '<div class="alert alert-primary" role="alert">';
+		global $L;
+		
+		$html  = '<div class="primary-style" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
 		$html .= '<div>';
-		$html .= '<label>'.DOMAIN.'/robots.txt</label>';
-		$html .= '<textarea name="robotstxt" id="jsrobotstxt">'.$this->getValue('robotstxt').'</textarea>';
+		$html .= '<label>'.$L->get('Robots URL').'</label>';
+		$html .= '<a href="' . DOMAIN .  '/robots.txt" target="_blank" >' . DOMAIN . '/robots.txt</a>';
+		$html .= '<label>'. $L->get("robots-rules") .'</label>';
+		$html .= '<textarea class="form-control" style="margin-top: 0.75rem;" name="robotstxt" id="jsrobotstxt">'.$this->getValue('robotstxt').'</textarea>';
 		$html .= '</div>';
 
 		return $html;

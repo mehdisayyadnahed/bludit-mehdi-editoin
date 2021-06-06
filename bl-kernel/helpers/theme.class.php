@@ -17,7 +17,9 @@ class Theme {
 			'youtube'=>'YouTube',
 			'aparat'=>'Aparat',
 			'facebook'=>'Facebook',
-			'email'=>'Email'
+			'email'=>'Email',
+			'rss'=>'RSS'
+			
 		);
 
 		foreach ($socialNetworks as $key=>$label) {

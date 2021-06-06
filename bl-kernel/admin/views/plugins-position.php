@@ -10,7 +10,7 @@
 	<?php echo Bootstrap::pageTitle(array('title'=>$L->g('Plugins position'), 'icon'=>'tags')); ?>
 </div>
 
-<div class="alert alert-primary"><?php $L->p('Drag and Drop to sort the plugins') ?></div>
+<div class="primary-style"><?php $L->p('Drag and Drop to sort the plugins') ?></div>
 
 <?php
 	// Token CSRF
@@ -24,7 +24,13 @@
 		'value'=>''
 	));
 
-	echo '<ul class="list-group list-group-sortable">';
+	if (count($pluginsInstalled) < 1){
+		echo '<p class="mt-4 text-muted">';
+		echo $L->g('there-are-no-active-plugin-at-this-momment');
+		echo '</p>';
+	}
+
+	echo '<ul class="list-group list-group-sortable" style="margin-top: 1rem; padding-right: 0;">';
 	foreach ($plugins['siteSidebar'] as $Plugin) {
 		echo '<li class="list-group-item" data-plugin="'.$Plugin->className().'"><span class="fa fa-arrows-v"></span> '.$Plugin->name().'</li>';
 	}

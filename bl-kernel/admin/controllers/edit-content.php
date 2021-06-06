@@ -9,7 +9,7 @@ if (checkRole(array('author'), false)) {
 		$pageKey = isset($_POST['key']) ? $_POST['key'] : $layout['parameters'];
 		$page = new Page($pageKey);
 	} catch (Exception $e) {
-		Alert::set($L->g('You do not have sufficient permissions'));
+		Alert::set($L->g('You do not have sufficient permissions'), ALERT_STATUS_FAIL);
 		Redirect::page('dashboard');
 	}
 
@@ -20,7 +20,7 @@ if (checkRole(array('author'), false)) {
 			'notes'=>$login->username()
 		));
 
-		Alert::set($L->g('You do not have sufficient permissions'));
+		Alert::set($L->g('You do not have sufficient permissions'), ALERT_STATUS_FAIL);
 		Redirect::page('dashboard');
 	}
 }

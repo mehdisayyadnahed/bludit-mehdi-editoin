@@ -1,6 +1,7 @@
 <?php defined('BLUDIT') or die('Bludit CMS.');
 
-echo '<h1 class="text-center mb-5 mt-5 font-weight-normal" style="color: #555;">بلودیت فارسی</h1>';
+// echo '<h1 class="text-center mb-5 mt-5 font-weight-normal" style="color: #839496;">'. $site->title() .'</h1>';
+echo '<div style="text-align: center; margin-bottom: 3rem;"><a class="h1" href='.HTML_PATH_ROOT.'>'. $site->title() .'</a></div>';
 
 echo Bootstrap::formOpen(array());
 
@@ -22,10 +23,11 @@ echo Bootstrap::formOpen(array());
 	';
 
 	echo '
-	<div class="form-check">
-		<input class="form-check-input" type="checkbox" value="true" id="jsremember" name="remember">
-		<label class="form-check-label" for="jsremember">'.$L->g('Remember me').'</label>
+	<div class="custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="true" id="jsremember" name="remember">
+		<label class="custom-control-label" for="jsremember"><span style="margin-right: 1.5rem;">'.$L->g('Remember me').'</span></label>
 	</div>
+
 
 	<div class="form-group mt-4">
 		<button type="submit" class="btn btn-primary btn-lg mr-2 w-100" name="save">'.$L->g('Login').'</button>

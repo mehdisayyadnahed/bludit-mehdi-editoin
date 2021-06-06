@@ -29,7 +29,7 @@ define('PROFILE_IMG_QUALITY', 100); // 100%
 define('ITEMS_PER_PAGE_ADMIN', 20);
 
 // Password length
-define('PASSWORD_LENGTH', 6);
+define('PASSWORD_LENGTH', 8);
 
 // Password salt length
 define('SALT_LENGTH', 8);
@@ -55,16 +55,16 @@ define('BACKUP_DATE_FORMAT', 'Y-m-d-H-i-s');
 define('SITEMAP_DATE_FORMAT', 'Y-m-d');
 
 // Date format for Manage Content, Manage Users
-define('ADMIN_PANEL_DATE_FORMAT', 'D, j M Y, H:i');
+define('ADMIN_PANEL_DATE_FORMAT', 'H:i:s - Y/m/d');
 
 // Date format for Dashboard schedule posts
-define('SCHEDULED_DATE_FORMAT', 'D, j M Y, H:i');
+define('SCHEDULED_DATE_FORMAT', 'H:i:s - Y/m/d');
 
 // Notifications date format
-define('NOTIFICATIONS_DATE_FORMAT', 'D, j M Y, H:i');
+define('NOTIFICATIONS_DATE_FORMAT', 'H:i:s - Y/m/d');
 
 // Manage content date format
-define('MANAGE_CONTENT_DATE_FORMAT', 'D, j M Y, H:i');
+define('MANAGE_CONTENT_DATE_FORMAT', 'H:i:s - Y/m/d');
 
 // Amount of items to show on notification panel
 define('NOTIFICATIONS_AMOUNT', 10);

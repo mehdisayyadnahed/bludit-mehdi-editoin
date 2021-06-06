@@ -112,7 +112,7 @@ define('DB_DATE_FORMAT', 'Y-m-d H:i:s');
 define('CHARSET', 'UTF-8');
 
 // Default language file
-define('DEFAULT_LANGUAGE_FILE', 'en.json');
+define('DEFAULT_LANGUAGE_FILE', 'fa_IR.json');
 
 // Set internal character encoding
 mb_internal_encoding(CHARSET);
@@ -134,22 +134,22 @@ include(PATH_KERNEL.'language.class.php');
 
 // --- LANGUAGE and LOCALE ---
 // Try to detect the language from browser or headers
-$languageFromHTTP = 'en';
-$localeFromHTTP = 'en_US';
+$languageFromHTTP = 'fa';
+$localeFromHTTP = 'fa_IR';
 
-if (isset($_GET['language'])) {
-	$languageFromHTTP = Sanitize::html($_GET['language']);
-} else {
-	// Try to detect the language browser
-	$languageFromHTTP = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+// if (isset($_GET['language'])) {
+// 	$languageFromHTTP = Sanitize::html($_GET['language']);
+// } else {
+// 	// Try to detect the language browser
+// 	$languageFromHTTP = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
-	// Try to detect the locale
-	if (function_exists('locale_accept_from_http')) {
-		$localeFromHTTP = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	}
-}
+// 	// Try to detect the locale
+// 	if (function_exists('locale_accept_from_http')) {
+// 		$localeFromHTTP = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+// 	}
+// }
 
-$finalLanguage = 'en';
+$finalLanguage = 'fa';
 $languageFiles = getLanguageList();
 foreach ($languageFiles as $fname=>$native) {
 	if ( ($languageFromHTTP==$fname) || ($localeFromHTTP==$fname) ) {
@@ -278,7 +278,7 @@ function install($adminPassword, $timezone)
 	}
 
 	// Directories for initial plugins
-	$pluginsToInstall = array('tinymce', 'about', 'simple-stats', 'robots', 'canonical','numbers');
+	$pluginsToInstall = array('tinymce', 'about', 'simple-stats', 'robots', 'canonical','snicker','search','sitemap','rss');
 	foreach ($pluginsToInstall as $plugin) {
 		if (!mkdir(PATH_PLUGINS_DATABASES.$plugin, DIR_PERMISSIONS, true)) {
 			$errorText = 'خطایی هنگام ایجاد شاخه رخ داد=>'.PATH_PLUGINS_DATABASES.$plugin;
@@ -369,8 +369,8 @@ function install($adminPassword, $timezone)
 		'title'=>'بلودیت فارسی',
 		'slogan'=>$L->get('welcome-to-bludit'),
 		'description'=>$L->get('congratulations-you-have-successfully-installed-your-bludit'),
-		'footer'=>'حق نشر © '.Date::current('Y'),
-		'itemsPerPage'=>6,
+		'footer'=>'حق نشر '.Date::current('Y'),
+		'itemsPerPage'=>7,
 		'language'=>$L->currentLanguage(),
 		'locale'=>$L->locale(),
 		'timezone'=>$timezone,
@@ -379,8 +379,8 @@ function install($adminPassword, $timezone)
 		'homepage'=>'',
 		'pageNotFound'=>'',
 		'uriPage'=>'/',
-		'uriTag'=>'/برچسب/',
-		'uriCategory'=>'/مجموعه/',
+		'uriTag'=>'/نویسنده/',
+		'uriCategory'=>'/دسته/',
 		'uriBlog'=>'',
 		'url'=>$siteUrl,
 		'emailFrom'=>'no-reply@'.DOMAIN,
@@ -389,10 +389,11 @@ function install($adminPassword, $timezone)
 		'virgool'=>'',
 		'rubika'=>'',
 		'instagram'=> '',
+		'rss'=>'',
 		'virgool'=>'',
-		'eitaa'=>'',
+		'eitaa'=>'test_link!',
 		'telegram'=>'',
-		'dateFormat'=>'j F Y',
+		'dateFormat'=>'Y/m/d',
 		'extremeFriendly'=>true,
 		'autosaveInterval'=>2,
 		'titleFormatHomepage'=>'{{site-title}} | {{site-slogan}}',
@@ -426,6 +427,7 @@ function install($adminPassword, $timezone)
 			'soroush'=>'',
 			'virgool'=>'',
 			'rubika'=>'',
+			'rss'=>'',
 			'telegram'=>'',
 			'instagram'=>'',
 			'eitaa'=>''
@@ -475,7 +477,7 @@ function install($adminPassword, $timezone)
 		$dataHead.json_encode(
 			array(
 				'position'=>1,
-				'label'=>$L->get('درباره'),
+				'label'=>'',
 				'text'=>$L->get('this-is-a-brief-description-of-yourself-our-your-site')
 			),
 		JSON_PRETTY_PRINT),
@@ -488,8 +490,8 @@ function install($adminPassword, $timezone)
 		$dataHead.json_encode(
 			array(
 				'numberOfDays'=>7,
-				'label'=>$L->get('بازدیدها'),
-				'excludeAdmins'=>false,
+				'label'=>$L->get('visits'),
+				'excludeAdmins'=>true,
 				'position'=>1
 			),
 		JSON_PRETTY_PRINT),
@@ -521,17 +523,6 @@ function install($adminPassword, $timezone)
 		JSON_PRETTY_PRINT),
 		LOCK_EX
 	);
-	
-	// File plugins/numbers/db.php
-	file_put_contents(
-		PATH_PLUGINS_DATABASES.'numbers'.DS.'db.php',
-		$dataHead.json_encode(
-			array(
-				'position'=>1
-			),
-		JSON_PRETTY_PRINT),
-		LOCK_EX
-	);
 
 	// File plugins/robots/db.php
 	file_put_contents(
@@ -544,6 +535,103 @@ function install($adminPassword, $timezone)
 		JSON_PRETTY_PRINT),
 		LOCK_EX
 	);
+
+	// File plugins/sitemap/db.php
+	file_put_contents(
+		PATH_PLUGINS_DATABASES.'sitemap'.DS.'db.php',
+		$dataHead.json_encode(
+			array(
+				"pingGoogle"=>true,
+				"pingBing"=>true,
+				"position"=>0
+			),
+		JSON_PRETTY_PRINT),
+		LOCK_EX
+	);
+
+	// File plugins/rss/db.php
+	file_put_contents(
+		PATH_PLUGINS_DATABASES.'rss'.DS.'db.php',
+		$dataHead.json_encode(
+			array(
+				'position'=>1,
+				"numberOfItems"=>7
+			),
+		JSON_PRETTY_PRINT),
+		LOCK_EX
+	);
+
+	// File plugins/search/db.php
+	file_put_contents(
+		PATH_PLUGINS_DATABASES.'search'.DS.'db.php',
+		$dataHead.json_encode(
+			array(
+				"label"=>"",
+				'minChars'=>3,
+				"wordsToCachePerPage"=>3000,
+				"showButtonSearch"=>true,
+				"position"=>2
+			),
+		JSON_PRETTY_PRINT),
+		LOCK_EX
+	);
+	mkdir(PATH_WORKSPACES.'search', DIR_PERMISSIONS, true);
+
+	// File plugins/snicker/db.php
+	file_put_contents(
+		PATH_PLUGINS_DATABASES.'snicker'.DS.'db.php',
+		$dataHead.json_encode(
+			array(
+				"moderation"=>false,
+				"moderation_loggedin"=>true,
+				"moderation_approved"=>false,
+				"comment_on_public"=>true,
+				"comment_on_static"=>true,
+				"comment_on_sticky"=>true,
+				"comment_title"=>"disabled",
+				"comment_limit"=>99,
+				"comment_depth"=>9,
+				"comment_markup_html"=>false,
+				"comment_markup_markdown"=>false,
+				"comment_vote_storage"=>"session",
+				"comment_enable_like"=>false,
+				"comment_enable_dislike"=>false,
+				"frontend_captcha"=>function_exists("imagettfbbox")? "gregwar": "purecaptcha",
+				"frontend_recaptcha_public"=>"",
+				"frontend_recaptcha_private"=>"",
+				"frontend_terms"=>"disabled",
+				"frontend_filter"=>"pageEnd",
+				"frontend_template"=>"default",
+				"frontend_order"=>"date_asc",
+				"frontend_form"=>"top",
+				"frontend_per_page"=>0,
+				"frontend_ajax"=>true,
+				"frontend_avatar"=>"static",
+				"frontend_avatar_users"=>false,
+				"frontend_gravatar"=>"mp",
+				"subscription"=>false,
+				"subscription_from"=>"ticker@{$_SERVER["SERVER_NAME"]}",
+				"subscription_reply"=>"noreply@{$_SERVER["SERVER_NAME"]}",
+				"subscription_optin"=>"default",
+				"subscription_ticker"=>"default",
+				"string_success_1"=>"Thanks for your comment!",
+				"string_success_2"=>"Thanks for your comment, please confirm your subscription via the link we sent to your eMail address!",
+				"string_success_3"=>"Thanks for voting this comment!",
+				"string_error_1"=>"An unknown error occured, please reload the page and try it again!",
+				"string_error_2"=>"An error occured: The passed Username is invalid or too long (42 characters only)!",
+				"string_error_3"=>"An error occured: The passed eMail address is invalid!",
+				"string_error_4"=>"An error occured: The comment text is missing!",
+				"string_error_5"=>"An error occured: The comment title is missing!",
+				"string_error_6"=>"An error occured: You need to accept the Terms to comment!",
+				"string_error_7"=>"An error occured: Your IP address or eMail address has been marked as Spam!",
+				"string_error_8"=>"An error occured: You already rated this comment!",
+				"string_terms_of_use"=>"I agree that my data (incl. my anonymized IP address) gets stored!",
+				"position"=>1
+			),
+		JSON_PRETTY_PRINT),
+		LOCK_EX
+	);
+	mkdir(PATH_WORKSPACES.'snicker', DIR_PERMISSIONS, true);
 
 	return true;
 }
@@ -575,8 +663,8 @@ if (isset($_GET['demo'])) {
 
 // Install by POST method
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (Text::length($_POST['password'])<6) {
-		$errorText = $L->g('password-must-be-at-least-6-characters-long');
+	if (Text::length($_POST['password'])<8) {
+		$errorText = $L->g('password-must-be-at-least-8-characters-long');
 		error_log('[ERROR] '.$errorText, 0);
 	} else {
 		install($_POST['password'], $_POST['timezone']);
@@ -588,7 +676,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $L->get('نصب کننده بلودیت') ?></title>
+	<title><?php echo $L->get('bludit-installer') ?></title>
 	<meta charset="<?php echo CHARSET ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="robots" content="noindex,nofollow">
@@ -609,7 +697,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container">
 	<div class="row justify-content-md-center pt-5">
 		<div class="col-md-4 pt-5">
-			<h1 class="text-center mb-5 mt-5 font-weight-normal" style="color: #555;"><?php echo $L->get('نصب کننده بلودیت') ?></h1>
+			<h1 class="text-center mb-5 mt-5 font-weight-normal" style="color: #839496;"><?php echo $L->get('bludit-installer') ?></h1>
 			<?php
 			$system = checkSystem();
 			if (!empty($system)) {
@@ -625,10 +713,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					';
 				}
 			}
-			elseif (isset($_GET['language']))
-			{
+			else{
 			?>
-				<p class="text-right"><?php echo $L->get('choose-a-password-for-the-user-admin') ?></p>
+				<p class="text-right" style="color: #839496;"><?php echo $L->get('choose-a-password-for-the-user-admin') ?></p>
 
 				<?php if (!empty($errorText)): ?>
 				<div class="alert alert-danger"><?php echo $errorText ?></div>
@@ -644,35 +731,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="form-group mb-0">
 					<input type="password" class="form-control form-control-lg" id="jspassword" name="password" placeholder="<?php $L->p('Password') ?>">
 					</div>
-					<div id="jsshowPassword" style="cursor: pointer;" class="text-center pt-0 text-muted"><?php $L->p('Show password') ?></div>
+					<div id="jsshowPassword" style="cursor: pointer; margin-top: 0.3rem;" class="text-center pt-0 text-muted"><?php $L->p('Show password') ?></div>
 
 					<div class="form-group mt-4">
 					<button type="submit" class="btn btn-primary btn-lg mr-2 w-100" name="install"><?php $L->p('Install') ?></button>
 					</div>
 				</form>
-			<?php
-			}
-			else
-			{
-			?>
-				<form class="text-right" id="jsformLanguage" method="get" action="" autocomplete="off">
-					<label for="jslanguage"><?php echo $L->get('زبان خود را انتخاب کنید') ?></label>
-					<select id="jslanguage" name="language" class="form-control form-control-lg">
-					<?php
-						$htmlOptions = getLanguageList();
-						foreach($htmlOptions as $fname=>$native) {
-							echo '<option value="'.$fname.'"'.( ($finalLanguage===$fname)?' selected="selected"':'').'>'.$native.'</option>';
-						}
-					?>
-					</select>
-
-					<div class="form-group mt-4">
-					<button type="submit" class="btn btn-primary btn-lg mr-2 w-100"><?php $L->p('ادامه') ?></button>
-					</div>
-				</form>
-			<?php
-			}
-			?>
+			<?php } ?>
 		</div>
 	</div>
 </div>

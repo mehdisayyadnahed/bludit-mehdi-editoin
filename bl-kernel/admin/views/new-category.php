@@ -25,15 +25,15 @@
 		'tip'=>''
 	));
 
-	echo Bootstrap::formTextarea(array(
-		'name'=>'description',
-		'label'=>$L->g('Description'),
-		'value'=>isset($_POST['description'])?$_POST['description']:'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>'',
-		'rows'=>3
-	));
+	// echo Bootstrap::formTextarea(array(
+	// 	'name'=>'description',
+	// 	'label'=>$L->g('Description'),
+	// 	'value'=>isset($_POST['description'])?$_POST['description']:'',
+	// 	'class'=>'',
+	// 	'placeholder'=>'',
+	// 	'tip'=>'',
+	// 	'rows'=>3
+	// ));
 ?>
 
 <?php echo Bootstrap::formClose(); ?>

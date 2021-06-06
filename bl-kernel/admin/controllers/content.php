@@ -49,6 +49,7 @@ if (checkRole(array('author'), false)) {
 	$scheduled 	= filterContentOwner($scheduled);
 	$static 	= filterContentOwner($static);
 	$sticky 	= filterContentOwner($sticky);
+	$autosave 	= filterContentOwner($autosave);
 }
 
 // Check if out of range the pageNumber

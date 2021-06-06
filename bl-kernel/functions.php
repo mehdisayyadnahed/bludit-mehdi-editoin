@@ -653,8 +653,8 @@ function changeUserPassword($args) {
 	$confirmPassword = $args['confirmPassword'];
 
 	// Password length
-	if (Text::length($newPassword) < 6) {
-		Alert::set($L->g('Password must be at least 6 characters long'), ALERT_STATUS_FAIL);
+	if (Text::length($newPassword) < 8) {
+		Alert::set($L->g('Password must be at least 8 characters long'), ALERT_STATUS_FAIL);
 		return false;
 	}
 
@@ -695,7 +695,7 @@ function checkRole($allowRoles, $redirect=true) {
 			'notes'=>$login->username()
 		));
 
-		Alert::set($L->g('You do not have sufficient permissions'));
+		Alert::set($L->g('You do not have sufficient permissions'), ALERT_STATUS_FAIL);
 		Redirect::page('dashboard');
 	}
 	return false;
@@ -720,7 +720,7 @@ function createCategory($args) {
 			'notes'=>$args['name']
 		));
 
-		Alert::set($L->g('Category added'), ALERT_STATUS_OK);
+		Alert::set($L->g('new-category-created'), ALERT_STATUS_OK);
 		return true;
 	}
 

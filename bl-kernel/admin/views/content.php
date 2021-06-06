@@ -15,41 +15,31 @@ function table($type) {
 	if ($type=='published') {
 		$list = $published;
 		if (empty($list)) {
-			echo '<p class="mt-4 text-muted">';
-			echo $L->g('There are no pages at this moment.');
-			echo '</p>';
+			echo '<p class="mt-4 text-muted">'.$L->g('there-are-no-pages-at-this-moment').'</p>';
 			return false;
 		}
 	} elseif ($type=='draft') {
 		$list = $drafts;
 		if (empty($list)) {
-			echo '<p class="mt-4 text-muted">';
-			echo $L->g('There are no draft pages at this moment.');
-			echo '</p>';
+			echo '<p class="mt-4 text-muted">'.$L->g('there-are-no-draft-pages-at-this-moment').'</p>';
 			return false;
 		}
 	} elseif ($type=='scheduled') {
 		$list = $scheduled;
 		if (empty($list)) {
-			echo '<p class="mt-4 text-muted">';
-			echo $L->g('There are no scheduled pages at this moment.');
-			echo '</p>';
+			echo '<p class="mt-4 text-muted">'.$L->g('there-are-no-scheduled-pages-at-this-moment').'</p>';
 			return false;
 		}
 	} elseif ($type=='static') {
 		$list = $static;
 		if (empty($list)) {
-			echo '<p class="mt-4 text-muted">';
-			echo $L->g('There are no static pages at this moment.');
-			echo '</p>';
+			echo '<p class="mt-4 text-muted">'.$L->g('there-are-no-static-pages-at-this-moment').'</p>';
 			return false;
 		}
 	} elseif ($type=='sticky') {
 		$list = $sticky;
 		if (empty($list)) {
-			echo '<p class="mt-4 text-muted">';
-			echo $L->g('There are no sticky pages at this moment.');
-			echo '</p>';
+			echo '<p class="mt-4 text-muted">'.$L->g('there-are-no-sticky-pages-at-this-moment').'</p>';
 			return false;
 		}
 	} elseif ($type=='autosave') {
@@ -57,20 +47,18 @@ function table($type) {
 	}
 
 	echo '
-	<table class="table mt-3">
-		<thead>
+	<table class="table table-striped mt-3">
+		<tbody>
 			<tr>
-				<th class="border-0" scope="col">'.$L->g('Title').'</th>
+				<th class="border-0 d-none d-sm-table-cell" scope="col">'.$L->g('Title').'</th>
 	';
 
 	if ($type=='published' || $type=='static' || $type=='sticky') {
-		echo '<th class="border-0 d-none d-lg-table-cell" scope="col">'.$L->g('URL').'</th>';
+		echo '<th class="border-0 d-none d-sm-table-cell" scope="col">'.$L->g('URL').'</th>';
 	}
 
 	echo '			<th class="border-0 text-center d-sm-table-cell" scope="col">'.$L->g('Actions').'</th>
 			</tr>
-		</thead>
-		<tbody>
 	';
 
 	if ( (ORDER_BY=='position') || $type=='static' ) {
@@ -86,20 +74,20 @@ function table($type) {
 							.'</a>
 						</div>
 						<div>
-							<p style="font-size: 0.8em" class="m-0 text-uppercase text-muted">'.( ((ORDER_BY=='position') || ($type!='published'))?$L->g('Position').': '.$page->position():$page->date(MANAGE_CONTENT_DATE_FORMAT) ).'</p>
+						<p style="font-size: 0.8em" class="m-0 text-uppercase text-muted">'.( ((ORDER_BY=='position') )?$L->g('Position').': '.$page->position():$page->date(MANAGE_CONTENT_DATE_FORMAT) ).'</p>
 						</div>
 					</td>';
 
 					if ($type=='published' || $type=='static' || $type=='sticky') {
 					$friendlyURL = Text::isEmpty($url->filters('page')) ? '/'.$page->key() : '/'.$url->filters('page').'/'.$page->key();
-					echo '<td class="d-none d-lg-table-cell"><a target="_blank" href="'.$page->permalink().'">'.$friendlyURL.'</a></td>';
+					echo '<td class="d-none d-sm-table-cell"><a target="_blank" href="'.$page->permalink().'">'.$friendlyURL.'</a></td>';
 					}
 
 					echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
 					echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$page->permalink().'"><i class="fa fa-desktop"></i>'.$L->g('View').'</a>'.PHP_EOL;
 					echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="fa fa-edit"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
 					if (count($page->children())==0) {
-						echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+						echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash">'.$L->g('Delete').'</i></a>'.PHP_EOL;
 					}
 					echo '</td>';
 
@@ -121,7 +109,7 @@ function table($type) {
 
 						if ($type=='published' || $type=='static' || $type=='sticky') {
 						$friendlyURL = Text::isEmpty($url->filters('page')) ? '/'.$child->key() : '/'.$url->filters('page').'/'.$child->key();
-						echo '<td class="d-none d-lg-table-cell"><a target="_blank" href="'.$child->permalink().'">'.$friendlyURL.'</a></td>';
+						echo '<td class="d-none d-sm-table-cell"><a target="_blank" href="'.$child->permalink().'">'.$friendlyURL.'</a></td>';
 						}
 
 						echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
@@ -129,7 +117,7 @@ function table($type) {
 						echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$child->permalink().'"><i class="fa fa-desktop"></i>'.$L->g('View').'</a>'.PHP_EOL;
 						}
 						echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$child->key().'"><i class="fa fa-edit"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
-						echo '<a class="ml-2 text-danger deletePageButton d-block d-sm-inline" href="#" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$child->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+						echo '<a class="ml-2 text-danger deletePageButton d-block d-sm-inline" href="#" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$child->key().'"><i class="fa fa-trash">'.$L->g('Delete').'</i></a>'.PHP_EOL;
 						echo '</td>';
 
 						echo '</tr>';
@@ -158,7 +146,7 @@ function table($type) {
 
 				if ($type=='published' || $type=='static' || $type=='sticky') {
 				$friendlyURL = Text::isEmpty($url->filters('page')) ? '/'.$page->key() : '/'.$url->filters('page').'/'.$page->key();
-				echo '<td class="pt-3 d-none d-lg-table-cell"><a target="_blank" href="'.$page->permalink().'">'.$friendlyURL.'</a></td>';
+				echo '<td class="pt-3 d-none d-sm-table-cell"><a target="_blank" href="'.$page->permalink().'">'.$friendlyURL.'</a></td>';
 				}
 
 				echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
@@ -167,7 +155,7 @@ function table($type) {
 				}
 				echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="fa fa-edit"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
 				if (count($page->children())==0) {
-					echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+					echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash">'.$L->g('Delete').'</i></a>'.PHP_EOL;
 				}
 				echo '</td>';
 
@@ -191,15 +179,17 @@ function table($type) {
 	<li class="nav-item">
 		<a class="nav-link active" id="pages-tab" data-toggle="tab" href="#pages" role="tab"><?php $L->p('Pages') ?></a>
 	</li>
-	<li class="nav-item">
-		<a class="nav-link" id="static-tab" data-toggle="tab" href="#static" role="tab"><?php $L->p('Static') ?></a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" id="sticky-tab" data-toggle="tab" href="#sticky" role="tab"><?php $L->p('Sticky') ?></a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" id="scheduled-tab" data-toggle="tab" href="#scheduled" role="tab"><?php $L->p('Scheduled') ?> <?php if (count($scheduled)>0) { echo '<span class="badge badge-danger">'.count($scheduled).'</span>'; } ?></a>
-	</li>
+	<?php if ($login->role()=='admin'):?>
+		<li class="nav-item">
+			<a class="nav-link" id="static-tab" data-toggle="tab" href="#static" role="tab"><?php $L->p('static') ?></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="sticky-tab" data-toggle="tab" href="#sticky" role="tab"><?php $L->p('Sticky') ?></a>
+		</li>
+	<?php endif ?>
+	<!-- <li class="nav-item">
+		<a class="nav-link" id="scheduled-tab" data-toggle="tab" href="#scheduled" role="tab"><?php# $L->p('Scheduled') ?> <?php# if (count($scheduled)>0) { echo '<span class="badge badge-danger">'.count($scheduled).'</span>'; } ?></a>
+	</li> -->
 	<li class="nav-item">
 		<a class="nav-link" id="draft-tab" data-toggle="tab" href="#draft" role="tab"><?php $L->p('Draft') ?></a>
 	</li>

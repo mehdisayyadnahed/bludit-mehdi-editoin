@@ -8,16 +8,19 @@ echo Bootstrap::link(array(
 	'icon'=>'plus'
 ));
 
-echo '
-<table class="table table-striped mt-3">
-	<thead>
-		<tr>
-			<th class="border-bottom-0" scope="col">'.$L->g('Name').'</th>
-			<th class="border-bottom-0" scope="col">'.$L->g('URL').'</th>
-		</tr>
-	</thead>
-	<tbody>
-';
+if (empty($categories->keys())) {
+	echo '<hr style="border-color: white;"><p class="mt-4 text-muted">'.$L->g('there-are-no-categories-at-this-moment').'</p>';
+}
+else{
+	echo '
+	<table class="table table-striped mt-3">
+		<tbody>
+			<tr>
+				<th class="border-bottom-0" scope="col">'.$L->g('Name').'</th>
+				<th class="border-bottom-0" scope="col">'.$L->g('URL').'</th>
+			</tr>
+	';
+}
 
 foreach ($categories->keys() as $key) {
 	$category = new Category($key);

@@ -54,14 +54,14 @@
 		'tip'=>$L->g('author-can-write-and-edit-their-own-content')
 	));
 
-	echo Bootstrap::formInputText(array(
-		'name'=>'email',
-		'label'=>$L->g('Email'),
-		'value'=>(isset($_POST['email'])?$_POST['email']:''),
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
+	// echo Bootstrap::formInputText(array(
+	// 	'name'=>'email',
+	// 	'label'=>$L->g('Email'),
+	// 	'value'=>(isset($_POST['email'])?$_POST['email']:''),
+	// 	'class'=>'',
+	// 	'placeholder'=>'',
+	// 	'tip'=>''
+	// ));
 ?>
 
 <?php echo Bootstrap::formClose(); ?>

@@ -2,7 +2,7 @@
 <ul class="nav flex-column pt-4">
 
 	<li class="nav-item mb-4" style="margin-left: -4px;">
-		<img src="<?php echo HTML_PATH_CORE_IMG ?>logo.svg" width="20" height="20" alt="bludit-logo"><span class="ml-2 align-middle"><?php echo (defined('BLUDIT_PRO'))?'BLUDIT PRO':'بلودیت فارسی' ?></span>
+		<!-- <img src="<?php #echo HTML_PATH_CORE_IMG ?>logo.svg" width="20" height="20" alt="bludit-logo"> --> <h4 class="ml-2 align-middle"><?php echo (defined('BLUDIT_PRO'))?'BLUDIT PRO':'بلودیت فارسی' ?></h4>
 	</li>
 
 	<li class="nav-item">
@@ -13,13 +13,18 @@
 	</li>
 
 	<li class="nav-item mt-3">
-		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'new-content' ?>"><span style="color: #0078D4;" class="fa fa-plus-circle"></span><?php $L->p('New content') ?></a>
+		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'new-content' ?>"><span class="fa fa-plus-circle"></span><?php $L->p('New content') ?></a>
 	</li>
 
 	<?php if (!checkRole(array('admin'),false)): ?>
 	<li class="nav-item">
 		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'content' ?>"><span class="fa fa-archive"></span><?php $L->p('Content') ?></a>
 	</li>
+		<?php if (checkRole(array('editor'),false)): ?>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'categories' ?>"><span class="fa fa-list"></span><?php $L->p('Categories') ?></a>
+			</li>
+		<?php endif; ?>
 	<li class="nav-item">
 		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'edit-user/'.$login->username() ?>"><span class="fa fa-user"></span><?php $L->p('Profile') ?></a>
 	</li>
@@ -59,11 +64,11 @@
 
 	<?php endif; ?>
 
-	<?php if (checkRole(array('admin', 'editor'),false)): ?>
+	<?php if (checkRole(array('admin', 'editor', 'author'),false)): ?>
 
 		<?php
 			if (!empty($plugins['adminSidebar'])) {
-				echo '<li class="nav-item"><hr></li>';
+				echo '<li class="nav-item mt-3"></li>';
 				foreach ($plugins['adminSidebar'] as $pluginSidebar) {
 					echo '<li class="nav-item">';
 					echo $pluginSidebar->adminSidebar();
@@ -74,7 +79,7 @@
 
 	<?php endif; ?>
 
-	<li class="nav-item mt-5">
+	<li class="nav-item mt-3">
 		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'logout' ?>"><span class="fa fa-arrow-circle-right"></span><?php $L->p('Logout') ?></a>
 	</li>
 </ul>

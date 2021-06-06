@@ -21,7 +21,7 @@
 		echo Bootstrap::formTitle(array('title'=>$block->title()));
 
 		if (Text::isNotEmpty( $block->description() )) {
-			echo Bootstrap::alert(array('class'=>'alert-primary', 'text'=>$block->description()));
+			echo Bootstrap::alert(array('class'=>'primary-style', 'text'=>$block->description()));
 		}
 
 		echo Bootstrap::formInputText(array(

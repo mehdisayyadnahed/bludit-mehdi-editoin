@@ -37,24 +37,24 @@
 		'tip'=>''
 	));
 
-	echo Bootstrap::formTextarea(array(
-		'name'=>'description',
-		'label'=>$L->g('Description'),
-		'value'=>isset($categoryMap['description'])?$categoryMap['description']:'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>'',
-		'rows'=>3
-	));
+	// echo Bootstrap::formTextarea(array(
+	// 	'name'=>'description',
+	// 	'label'=>$L->g('Description'),
+	// 	'value'=>isset($categoryMap['description'])?$categoryMap['description']:'',
+	// 	'class'=>'',
+	// 	'placeholder'=>'',
+	// 	'tip'=>'',
+	// 	'rows'=>3
+	// ));
 
-	echo Bootstrap::formInputText(array(
-		'name'=>'template',
-		'label'=>$L->g('Template'),
-		'value'=>isset($categoryMap['template'])?$categoryMap['template']:'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
+	// echo Bootstrap::formInputText(array(
+	// 	'name'=>'template',
+	// 	'label'=>$L->g('Template'),
+	// 	'value'=>isset($categoryMap['template'])?$categoryMap['template']:'',
+	// 	'class'=>'',
+	// 	'placeholder'=>'',
+	// 	'tip'=>''
+	// ));
 
 	echo Bootstrap::formInputText(array(
 		'name'=>'newKey',

@@ -5,8 +5,8 @@ class pluginSitemap extends Plugin {
 	public function init()
 	{
 		$this->dbFields = array(
-			'pingGoogle'=>false,
-			'pingBing'=>false
+			'pingGoogle'=>true,
+			'pingBing'=>true
 		);
 	}
 
@@ -15,18 +15,18 @@ class pluginSitemap extends Plugin {
 	{
 		global $L;
 
-		$html  = '<div class="alert alert-primary" role="alert">';
+		$html  = '<div class="primary-style" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('Sitemap URL').'</label>';
-		$html .= '<a href="'.Theme::sitemapUrl().'">'.Theme::sitemapUrl().'</a>';
+		$html .= '<a href="'.Theme::sitemapUrl().'" target="_blank">'.Theme::sitemapUrl().'</a>';
 		$html .= '</div>';
 
 		$html .= '<div>';
-		$html .= '<label>Ping Google</label>';
-		$html .= '<select name="pingGoogle">';
+		$html .= '<label>'. $L->get("ping-google") .'</label>';
+		$html .= '<select name="pingGoogle" class="form-control" >';
 		$html .= '<option value="true" '.($this->getValue('pingGoogle')===true?'selected':'').'>'.$L->get('Enabled').'</option>';
 		$html .= '<option value="false" '.($this->getValue('pingGoogle')===false?'selected':'').'>'.$L->get('Disabled').'</option>';
 		$html .= '</select>';
@@ -34,8 +34,8 @@ class pluginSitemap extends Plugin {
 		$html .= '</div>';
 
 		$html .= '<div>';
-		$html .= '<label>Ping Bing</label>';
-		$html .= '<select name="pingBing">';
+		$html .= '<label>'. $L->get("ping-bing") .'</label>';
+		$html .= '<select name="pingBing" class="form-control" >';
 		$html .= '<option value="true" '.($this->getValue('pingBing')===true?'selected':'').'>'.$L->get('Enabled').'</option>';
 		$html .= '<option value="false" '.($this->getValue('pingBing')===false?'selected':'').'>'.$L->get('Disabled').'</option>';
 		$html .= '</select>';

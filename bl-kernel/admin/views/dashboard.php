@@ -1,11 +1,14 @@
 <div id="dashboard" class="container">
 	<div class="row">
+	<?php if ($login->role()==='admin'): ?>
 		<div class="col-md-7">
-
+	<?php else: ?>
+		<div class="col-md-12">
+	<?php endif ?>		
 			<!-- Good message -->
 			<div>
 			<h2 id="hello-message" class="pt-0">
-				<span class="fa fa-hand-spock-o"></span><span><?php echo $L->g('hello') ?></span>
+				<span class="fa fa-hand-paper-o"></span><span><?php echo $L->g('hello') ?></span>
 			</h2>
 			<script>
 			$( document ).ready(function() {
@@ -27,7 +30,7 @@
 			</div>
 
 			<!-- Quick Links -->
-			<div class="container border-bottom pb-5" id="jsclippyContainer">
+			<!-- <div class="container pb-5" id="jsclippyContainer">
 
 				<div class="row">
 					<div class="col">
@@ -35,13 +38,13 @@
 						<select id="jsclippy" class="clippy" name="state"></select>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-			<script>
+		<!-- <script>
 			$(document).ready(function() {
 
 				var clippy = $("#jsclippy").select2({
-					placeholder: "<?php $L->p('Start typing to see a list of suggestions') ?>",
+					placeholder: "<?php # $L->p('Start typing to see a list of suggestions') ?>",
 					allowClear: true,
 					width: "100%",
 					theme: "bootstrap4",
@@ -73,8 +76,9 @@
 							html += '<div class="search-suggestion">';
 							html += '<div class="search-suggestion-item">'+data.text+' <span class="badge badge-pill badge-light">'+data.type+'</span></div>';
 							html += '<div class="search-suggestion-options">';
-							html += '<a target="_blank" href="'+DOMAIN_PAGES+data.id+'"><?php $L->p('view') ?></a>';
-							html += '<a class="ml-2" href="'+DOMAIN_ADMIN+'edit-content/'+data.id+'"><?php $L->p('edit') ?></a>';
+							html += '<a target="_blank" href="'+DOMAIN_PAGES+data.id+'"><?php # $L->p('view') ?></a>';
+							html += '&nbsp;';
+							html += '<a class="ml-2" href="'+DOMAIN_ADMIN+'edit-content/'+data.id+'"><?php # $L->p('edit') ?></a>';
 							html += '</div></div>';
 						}
 
@@ -91,56 +95,44 @@
 				clippy.select2("open");
 
 			});
-			</script>
-			</div>
-			<div class="container mt-4">
-				<div class="row">
-					<div class="col">
-						<a class="quick-links text-center" target="_blank" href="https://docs.bludit.com">
-							<div class="fa fa-compass quick-links-icons"></div>
-							<div><?php $L->p('Documentation') ?></div>
-						</a>
-					</div>
-					<div class="col border-left border-right">
-						<a class="quick-links text-center" target="_blank" href="https://forum.bludit.org">
-							<div class="fa fa-support quick-links-icons"></div>
-							<div><?php $L->p('Forum support') ?></div>
-						</a>
-					</div>
-					<div class="col">
-						<a class="quick-links text-center" target="_blank" href="https://gitter.im/bludit/support">
-							<div class="fa fa-comments quick-links-icons"></div>
-							<div><?php $L->p('Chat support') ?></div>
-						</a>
-					</div>
-				</div>
-			</div>
+			</script> -->
+			<!-- </div> -->
 
 			<?php Theme::plugins('dashboard') ?>
 		</div>
-		<div class="col-md-5">
 
-			<!-- Notifications -->
-			<ul class="list-group list-group-striped b-0">
-			<li class="list-group-item pt-0"><h4><?php $L->p('Notifications') ?></h4></li>
-			<?php
-			$logs = array_slice($syslog->db, 0, NOTIFICATIONS_AMOUNT);
-			foreach ($logs as $log) {
-				$phrase = $L->g($log['dictionaryKey']);
-				echo '<li class="list-group-item">';
-				echo $phrase;
-				if (!empty($log['notes'])) {
-					echo ' « <b>'.$log['notes'].'</b> »';
+		<?php if ($login->role()==='admin'): ?>
+			<div class="col-md-5">
+				<!-- Notifications -->
+				<ul class="list-group list-group-striped b-0">
+				<li class="list-group-item pt-0"><h4 style="margin-top: 1em;"><?php $L->p('Notifications') ?></h4></li>
+				<?php
+
+				$logs = array_slice($syslog->db, 0, NOTIFICATIONS_AMOUNT);
+				foreach ($logs as $log) {
+					$dateRaw = $log['date'];
+					$format="H:i:s - Y/m/d";
+					if(!function_exists("jdate")){
+						require_once PATH_KERNEL . "jdate.func.php";
+					}
+					$output = jdate($format, strtotime($dateRaw));
+
+					$phrase = $L->g($log['dictionaryKey']);
+					echo '<li class="list-group-item">';
+					echo $phrase;
+					if (!empty($log['notes'])) {
+						echo ' « <b>'.$log['notes'].'</b> »';
+					}
+					echo '<br><span class="notification-date"><small>';
+					echo $output;
+					echo ' [ '.$log['username'] .' ]';
+					echo '</small></span>';
+					echo '</li>';
 				}
-				echo '<br><span class="notification-date"><small>';
-				echo Date::format($log['date'], DB_DATE_FORMAT, NOTIFICATIONS_DATE_FORMAT);
-				echo ' [ '.$log['username'] .' ]';
-				echo '</small></span>';
-				echo '</li>';
-			}
-			?>
-			</ul>
+				?>
+				</ul>
 
-		</div>
+			</div>
+		<?php endif ?>
 	</div>
 </div>

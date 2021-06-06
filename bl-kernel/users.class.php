@@ -18,6 +18,7 @@ class Users extends dbJSON {
 		'twitter'=>'',
 		'soroush'=>'',
 		'rubika'=>'',
+		'rss'=>'',
 		'facebook'=>'',
 		'virgool'=>'',
 		'youtube'=>'',

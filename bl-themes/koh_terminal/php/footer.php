@@ -7,7 +7,7 @@
 			<!--</div>-->
 		     
 			<div class="col-md-6 col-sm-6 col-6  text-right">
-				<p class="text-white"><?php echo $site->footer(); ?></p>
+				<p class="text-white" style="margin-bottom: 1rem;"><?php echo $site->footer(); ?></p>
 			</div>
 
 			<div class="col-md-6 col-sm-6 col-6  text-left">

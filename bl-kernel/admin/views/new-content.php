@@ -43,8 +43,8 @@ echo Bootstrap::formOpen(array(
 <!-- TOOLBAR -->
 <div id="jseditorToolbar" class="mb-1">
 	<div id="jseditorToolbarRight" class="btn-group btn-group-sm float-right" role="group" aria-label="Toolbar right">
-		<button type="button" class="btn btn-light" id="jsmediaManagerOpenModal" data-toggle="modal" data-target="#jsmediaManagerModal"><span class="fa fa-image"></span> <?php $L->p('Images') ?></button>
-		<button type="button" class="btn btn-light" id="jsoptionsSidebar" style="z-index:30"><span class="fa fa-cog"></span> <?php $L->p('Options') ?></button>
+		<!--<button type="button" class="btn btn-light" id="jsmediaManagerOpenModal" data-toggle="modal" data-target="#jsmediaManagerModal"><span class="fa fa-image"></span> <?php # $L->p('Images') ?></button>-->
+		<button type="button" class="btn btn-light" id="jsoptionsSidebar" style="z-index:30;"><span class="fa fa-cog"></span> <?php $L->p('Options') ?></button>
 	</div>
 
 	<div id="jseditorToolbarLeft">
@@ -68,15 +68,15 @@ echo Bootstrap::formOpen(array(
 </script>
 
 <!-- SIDEBAR OPTIONS -->
-<div id="jseditorSidebar">
+<div id="jseditorSidebar" style="border-radius: 5px; border-color: #073642; background-color: #121212; color: #839496;">
 	<nav>
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-link active show" id="nav-general-tab"  data-toggle="tab" href="#nav-general"  role="tab" aria-controls="general"><?php $L->p('General') ?></a>
-			<a class="nav-link" id="nav-advanced-tab" data-toggle="tab" href="#nav-advanced" role="tab" aria-controls="advanced"><?php $L->p('Advanced') ?></a>
+		<div class="nav nav-tabs" style="background-color: #121212;" id="nav-tab" role="tablist">
+			<a class="nav-link active show" style="color: #839496;" id="nav-general-tab"  data-toggle="tab" href="#nav-general"  role="tab" aria-controls="general"><?php $L->p('General') ?></a>
+			<a class="nav-link" style="color: #839496;" id="nav-advanced-tab" data-toggle="tab" href="#nav-advanced" role="tab" aria-controls="advanced"><?php $L->p('Advanced') ?></a>
 			<?php if (!empty($site->customFields())): ?>
-			<a class="nav-link" id="nav-custom-tab" data-toggle="tab" href="#nav-custom" role="tab" aria-controls="custom"><?php $L->p('Custom') ?></a>
+			<a class="nav-link" style="color: #839496;" id="nav-custom-tab" data-toggle="tab" href="#nav-custom" role="tab" aria-controls="custom"><?php $L->p('Custom') ?></a>
 			<?php endif ?>
-			<a class="nav-link" id="nav-seo-tab" data-toggle="tab" href="#nav-seo" role="tab" aria-controls="seo"><?php $L->p('SEO') ?></a>
+			<a class="nav-link" style="color: #839496;" id="nav-seo-tab" data-toggle="tab" href="#nav-seo" role="tab" aria-controls="seo"><?php $L->p('SEO') ?></a>
 		</div>
 	</nav>
 
@@ -94,54 +94,56 @@ echo Bootstrap::formOpen(array(
 				));
 
 				// Description
-				echo Bootstrap::formTextareaBlock(array(
-					'name'=>'description',
-					'label'=>$L->g('Description'),
-					'selected'=>'',
-					'class'=>'',
-					'value'=>'',
-					'rows'=>5,
-					'placeholder'=>$L->get('this-field-can-help-describe-the-content')
-				));
+				// echo Bootstrap::formTextareaBlock(array(
+				// 	'name'=>'description',
+				// 	'type'=>'hidden',
+				// 	'label'=>$L->g('Description'),
+				// 	'selected'=>'',
+				// 	'class'=>'',
+				// 	'value'=>'',
+				// 	'rows'=>5,
+				// 	'placeholder'=>$L->get('this-field-can-help-describe-the-content')
+				// ));
 			?>
 
 			<!-- Cover Image -->
-			<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100"><?php $L->p('Cover Image') ?></label>
-			<div>
-				<img id="jscoverImagePreview" class="mx-auto d-block w-100" alt="Cover image preview" src="<?php echo HTML_PATH_CORE_IMG ?>default.svg" />
-			</div>
-			<div class="mt-2 text-center">
-				<button type="button" id="jsbuttonSelectCoverImage" class="btn btn-primary btn-sm"><?php echo $L->g('Select cover image') ?></button>
-				<button type="button" id="jsbuttonRemoveCoverImage" class="btn btn-secondary btn-sm"><?php echo $L->g('Remove cover image') ?></button>
-			</div>
-			<script>
-				$(document).ready(function() {
-					$("#jscoverImagePreview").on("click", function() {
-						openMediaManager();
-					});
+			<!--<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100"><?php #$L->p('Cover Image') ?></label>-->
+			<!--<div>-->
+			<!--	<img id="jscoverImagePreview" class="mx-auto d-block w-100" alt="Cover image preview" src="<?php #echo HTML_PATH_CORE_IMG ?>default.svg" />-->
+			<!--</div>-->
+			<!--<div class="mt-2 text-center">-->
+			<!--	<button type="button" id="jsbuttonSelectCoverImage" class="btn btn-primary btn-sm"><?php #echo $L->g('Select cover image') ?></button>-->
+			<!--	<button type="button" id="jsbuttonRemoveCoverImage" class="btn btn-secondary btn-sm"><?php #echo $L->g('Remove cover image') ?></button>-->
+			<!--</div>-->
+			<!--<script>-->
+			<!--	$(document).ready(function() {-->
+			<!--		$("#jscoverImagePreview").on("click", function() {-->
+			<!--			openMediaManager();-->
+			<!--		});-->
 
-					$("#jsbuttonSelectCoverImage").on("click", function() {
-						openMediaManager();
-					});
+			<!--		$("#jsbuttonSelectCoverImage").on("click", function() {-->
+			<!--			openMediaManager();-->
+			<!--		});-->
 
-					$("#jsbuttonRemoveCoverImage").on("click", function() {
-						$("#jscoverImage").val('');
-						$("#jscoverImagePreview").attr('src', HTML_PATH_CORE_IMG+'default.svg');
-					});
-				});
-			</script>
+			<!--		$("#jsbuttonRemoveCoverImage").on("click", function() {-->
+			<!--			$("#jscoverImage").val('');-->
+			<!--			$("#jscoverImagePreview").attr('src', HTML_PATH_CORE_IMG+'default.svg');-->
+			<!--		});-->
+			<!--	});-->
+			<!--</script>-->
 		</div>
 		<div id="nav-advanced" class="tab-pane fade" role="tabpanel" aria-labelledby="advanced-tab">
 			<?php
 				// Date
-				echo Bootstrap::formInputTextBlock(array(
-					'name'=>'date',
-					'label'=>$L->g('Date'),
-					'placeholder'=>'',
-					'value'=>Date::current(DB_DATE_FORMAT),
-					'tip'=>$L->g('date-format-format')
-				));
+				// echo Bootstrap::formInputTextBlock(array(
+				// 	'name'=>'date',
+				// 	'label'=>$L->g('Date'),
+				// 	'placeholder'=>'',
+				// 	'value'=>Date::current(DB_DATE_FORMAT),
+				// 	'tip'=>$L->g('date-format-format')
+				// ));
 
+				if ($login->role()=='admin'){
 				// Type
 				echo Bootstrap::formSelectBlock(array(
 					'name'=>'typeSelector',
@@ -149,41 +151,45 @@ echo Bootstrap::formOpen(array(
 					'selected'=>'',
 					'options'=>array(
 						'published'=>'- '.$L->g('Default').' -',
-						'sticky'=>$L->g('Sticky'),
-						'static'=>$L->g('Static')
+						'static'=>$L->g('Static'),
+						'sticky'=>$L->g('Sticky')
 					),
 					'tip'=>''
-				));
+				)); }
 
 				// Position
-				echo Bootstrap::formInputTextBlock(array(
-					'name'=>'position',
-					'label'=>$L->g('Position'),
-					'tip'=>$L->g('Field used when ordering content by position'),
-					'value'=>$pages->nextPositionNumber()
-				));
+				// echo Bootstrap::formInputTextBlock(array(
+				// 	'name'=>'position',
+				// 	'label'=>$L->g('Position'),
+				// 	'tip'=>$L->g('Field used when ordering content by position'),
+				// 	'value'=>$pages->nextPositionNumber()
+				// ));
 
 				// Tags
-				echo Bootstrap::formInputTextBlock(array(
+				// echo Bootstrap::formInputTextBlock(array(
+				// 	'name'=>'tags',
+				// 	'label'=>$L->g('Tags'),
+				// 	'placeholder'=>'',
+				// 	'tip'=>$L->g('Write the tags separated by comma')
+				// ));
+				echo Bootstrap::formInputHidden(array(
 					'name'=>'tags',
-					'label'=>$L->g('Tags'),
-					'placeholder'=>'',
-					'tip'=>$L->g('Write the tags separated by comma')
+					'value'=>$login->username(),
 				));
 
 				// Parent
-				echo Bootstrap::formSelectBlock(array(
-					'name'=>'parent',
-					'label'=>$L->g('Parent'),
-					'options'=>array(),
-					'selected'=>false,
-					'class'=>'',
-					'tip'=>$L->g('Start typing a page title to see a list of suggestions.'),
-				));
+				// echo Bootstrap::formSelectBlock(array(
+				// 	'name'=>'parent',
+				// 	'label'=>$L->g('Parent'),
+				// 	'options'=>array(),
+				// 	'selected'=>false,
+				// 	'class'=>'',
+				// 	'tip'=>$L->g('Start typing a page title to see a list of suggestions.'),
+				// ));
 
 			?>
 
-			<script>
+			<!-- <script>
 			$(document).ready(function() {
 				var parent = $("#jsparent").select2({
 					placeholder: "",
@@ -215,22 +221,22 @@ echo Bootstrap::formOpen(array(
 					}
 				});
 			});
-			</script>
+			</script> -->
 
 			<?php
 				// Template
-				echo Bootstrap::formInputTextBlock(array(
-					'name'=>'template',
-					'label'=>$L->g('Template'),
-					'placeholder'=>'',
-					'value'=>'',
-					'tip'=>$L->g('Write a template name to filter the page in the theme and change the style of the page.')
-				));
+				// echo Bootstrap::formInputTextBlock(array(
+				// 	'name'=>'template',
+				// 	'label'=>$L->g('Template'),
+				// 	'placeholder'=>'',
+				// 	'value'=>'',
+				// 	'tip'=>$L->g('Write a template name to filter the page in the theme and change the style of the page.')
+				// ));
 
 				echo Bootstrap::formInputTextBlock(array(
 					'name'=>'externalCoverImage',
 					'label'=>$L->g('External cover image'),
-					'placeholder'=>"https://",
+					'placeholder'=>"//:https",
 					'value'=>'',
 					'tip'=>$L->g('Set a cover image from external URL, such as a CDN or some server dedicated for images.')
 				));
@@ -310,34 +316,34 @@ echo Bootstrap::formOpen(array(
 				));
 
 				// Robots
-				echo Bootstrap::formCheckbox(array(
-					'name'=>'noindex',
-					'label'=>'Robots',
-					'labelForCheckbox'=>$L->g('apply-code-noindex-code-to-this-page'),
-					'placeholder'=>'',
-					'checked'=>false,
-					'tip'=>$L->g('This tells search engines not to show this page in their search results.')
-				));
+				// echo Bootstrap::formCheckbox(array(
+				// 	'name'=>'noindex',
+				// 	'label'=>'Robots',
+				// 	'labelForCheckbox'=>$L->g('apply-code-noindex-code-to-this-page'),
+				// 	'placeholder'=>'',
+				// 	'checked'=>false,
+				// 	'tip'=>$L->g('This tells search engines not to show this page in their search results.')
+				// ));
 
 				// Robots
-				echo Bootstrap::formCheckbox(array(
-					'name'=>'nofollow',
-					'label'=>'',
-					'labelForCheckbox'=>$L->g('apply-code-nofollow-code-to-this-page'),
-					'placeholder'=>'',
-					'checked'=>false,
-					'tip'=>$L->g('This tells search engines not to follow links on this page.')
-				));
+				// echo Bootstrap::formCheckbox(array(
+				// 	'name'=>'nofollow',
+				// 	'label'=>'',
+				// 	'labelForCheckbox'=>$L->g('apply-code-nofollow-code-to-this-page'),
+				// 	'placeholder'=>'',
+				// 	'checked'=>false,
+				// 	'tip'=>$L->g('This tells search engines not to follow links on this page.')
+				// ));
 
 				// Robots
-				echo Bootstrap::formCheckbox(array(
-					'name'=>'noarchive',
-					'label'=>'',
-					'labelForCheckbox'=>$L->g('apply-code-noarchive-code-to-this-page'),
-					'placeholder'=>'',
-					'checked'=>false,
-					'tip'=>$L->g('This tells search engines not to save a cached copy of this page.')
-				));
+				// echo Bootstrap::formCheckbox(array(
+				// 	'name'=>'noarchive',
+				// 	'label'=>'',
+				// 	'labelForCheckbox'=>$L->g('apply-code-noarchive-code-to-this-page'),
+				// 	'placeholder'=>'',
+				// 	'checked'=>false,
+				// 	'tip'=>$L->g('This tells search engines not to save a cached copy of this page.')
+				// ));
 			?>
 		</div>
 	</div>
@@ -377,7 +383,7 @@ echo Bootstrap::formOpen(array(
 
 <!-- Title -->
 <div id="jseditorTitle" class="form-group mb-1">
-	<input id="jstitle" name="title" type="text" class="form-control form-control-lg rounded-0" value="" placeholder="<?php $L->p('Enter title') ?>">
+	<input id="jstitle" name="title" type="text" class="form-control form-control-lg rounded-5" value="" placeholder="<?php $L->p('Enter title') ?>">
 </div>
 
 <!-- Editor -->

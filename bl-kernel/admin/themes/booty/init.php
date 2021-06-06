@@ -122,7 +122,7 @@ EOF;
 			$class = $args['class'];
 		}
 
-		$labelClass = 'mt-4 mb-2 pb-2 border-bottom text-uppercase w-100';
+		$labelClass = 'mt-4 mb-2 text-uppercase w-100';
 		if (isset($args['labelClass'])) {
 			$labelClass = $args['labelClass'];
 		}
@@ -209,7 +209,7 @@ EOF;
 
 		$html = '<div class="form-group m-0">';
 		if (!empty($args['label'])) {
-			$html .= '<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100" for="'.$id.'">'.$args['label'].'</label>';
+			$html .= '<label class="mt-4 mb-2 text-uppercase w-100" for="'.$id.'">'.$args['label'].'</label>';
 		}
 
 		$html .= '<textarea class="'.$class.'" id="'.$id.'" name="'.$args['name'].'" rows="'.$args['rows'].'" placeholder="'.$args['placeholder'].'">'.$args['value'].'</textarea>';
@@ -361,7 +361,7 @@ EOF;
 		$html = '<div class="form-group m-0">';
 
 		if (!empty($args['label'])) {
-			$html .= '<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100" for="'.$id.'">'.$args['label'].'</label>';
+			$html .= '<label class="mt-4 mb-2 text-uppercase w-100" for="'.$id.'">'.$args['label'].'</label>';
 		}
 
 		$html .= '<select id="'.$id.'" name="'.$args['name'].'" class="'.$class.'">';

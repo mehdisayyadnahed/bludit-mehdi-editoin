@@ -11,21 +11,35 @@
 
 	<div class="card-body">
 		<!-- Title -->
-		<h1 class="text-primary"><?php echo $page->title(); ?></h1>
+		<h3 class="text-primary"><?php echo $page->title(); ?></h3>
 
-		<?php if (!$page->isStatic() && !$url->notFound()): ?>
-		<br/>
+
+		
 		<!-- Creation date -->
-		<!--<p class="text-info"><?php #echo $page->date(); ?> - <?php #echo $L->get('Reading time') . ': ' . $page->readingTime() ?></p>-->
+	    <?php if (!$page->isStatic() && !$url->notFound()): ?>
+		    <p style="margin-top: 10px; margin-bottom: 10px;">
+    		    <?php $author_name = $page->username(); if($page->user('nickname') != '' ){
+    		    $author_name = $page->user('nickname'); }
+    		    echo ("<nobr>" . $L->get('author') . ': <a href=' . $site->uriFilters('tag') . $page->tags() . ">" . $author_name . "</a></nobr>"); ?> | 
+    		    <?php echo ("<nobr>" . $L->get('date') . ': ' . $page->date() . "</nobr>"); ?> | 
+    		    <?php echo ("<nobr>" . $L->get('Reading time') . ': ' . $page->readingTime() . "</nobr>"); ?></p>
 		<?php endif ?>
 
 		<!-- Full content -->
 		<?php echo $page->content(); ?>
-
+		
+		<?php if( (($page->user('firstname') != '') || ($page->user('email') != '')) and !$url->notFound() ): ?>
+			<br>
+    		<div  class="card card-body" style="background-color: #121212;">
+    		    <?php if( $page->user('firstname') != ''){ echo ("<br>" . $L->get("about-author") . ": " . $page->user('firstname')); } ?>
+    		    <?php if ($page->user('email') != ''): ?>
+    		        <?php if ($page->user('firstname') != ''): ?>
+    		            <?php echo ("<br>"); endif ?>
+    		        <?php echo ( $L->get("contact-links") . ": " . $page->user('email')); endif ?>
+            </div>
+        <?php endif ?>
 	</div>
 
-	<div class="card-body">
-		<!-- Load Bludit Plugins: Page End -->
-		<?php Theme::plugins('pageEnd'); ?>
-    </div>
+	<!-- Load Bludit Plugins: Page End -->
+	<?php Theme::plugins('pageEnd'); ?>
 </div>

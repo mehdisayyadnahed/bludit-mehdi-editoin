@@ -1,13 +1,12 @@
-@import url('../fonts/Vazir/Vazir.css');
+@import url('/bl-kernel/fonts/Vazir/Vazir.css');
 
 html {
-    font-family:Vazir,Tahoma,Geneva,Verdana,sans-serif;
+    direction: rtl;
 }
 
 body{
     background-color: #121212;
     line-height: 2;
-    direction: rtl;
     text-align: right;
     font-family:Vazir,Tahoma,Geneva,Verdana,sans-serif;
 }
@@ -24,6 +23,10 @@ body{
 
 hr {
     border-color: #2AA198;
+}
+
+p {
+    margin: 0;
 }
 
 #logo {
@@ -43,7 +46,7 @@ hr {
 
 @keyframes animated-text{
     from{width: 0;}
-    to{width: 105px;}
+    to{width: 112px;}
 }
 
 /* cursor animations */
@@ -64,7 +67,20 @@ code {
 	border-radius: 3px;
 }
 
+.page-link{
+    box-shadow: none !important;
+}
+
 .mini-logo {
 	height: 22px;
 	padding-bottom: 5px;
+}
+
+.btn{
+    transition: none;
+    box-shadow: none !important;
+}
+
+.list-group-item-action:active{
+    background-color:#242f30;
 }

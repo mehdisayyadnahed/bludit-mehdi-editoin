@@ -26,6 +26,7 @@ class Site extends dbJSON {
 		'twitter'=>		'',
 		'soroush'=>		'',
 		'rubika'=>		'',
+		'rss'=>		'',
 		'facebook'=>		'',
 		'virgool'=>		'',
 		'youtube'=>		'',
@@ -110,8 +111,10 @@ class Site extends dbJSON {
 
 	// DEPRECATED in v3.0, use Theme::rssUrl()
 	public function rss()
-	{
-		return DOMAIN_BASE.'rss.xml';
+	{	
+		return $this->getField('rss');
+		// return DOMAIN_BASE.'rss.xml';
+
 	}
 
 	// DEPRECATED in v3.0, use Theme::sitemapUrl()

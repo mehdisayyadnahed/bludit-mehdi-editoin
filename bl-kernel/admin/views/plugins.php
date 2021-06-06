@@ -36,12 +36,20 @@ $(document).ready(function() {
 echo Bootstrap::formTitle(array('title'=>$L->g('Enabled plugins')));
 
 echo '
-<table class="table">
+<table class="table table-striped mt-3">
 	<tbody>
 ';
 
 // Show installed plugins
+
+if (count($pluginsInstalled) < 1){
+	echo '<p class="mt-4 text-muted">';
+	echo $L->g('there-are-no-active-plugin-at-this-momment');
+	echo '</p>';
+}
+
 foreach ($pluginsInstalled as $plugin) {
+
 	echo '<tr id="'.$plugin->className().'" class="bg-light searchItem">';
 
 	echo '<td class="align-middle pt-3 pb-3 w-25">
@@ -83,7 +91,16 @@ echo '
 
 // Plugins not installed
 $pluginsNotInstalled = array_diff_key($plugins['all'], $pluginsInstalled);
+
+if (count($pluginsNotInstalled) < 1){
+	echo '<p class="mt-4 text-muted">';
+	echo $L->g('there-are-no-inactive-plugin-at-this-momment');
+	echo '</p>';
+}
+
 foreach ($pluginsNotInstalled as $plugin) {
+
+
 	echo '<tr id="'.$plugin->className().'" class="searchItem">';
 
 	echo '<td class="align-middle pt-3 pb-3 w-25">
