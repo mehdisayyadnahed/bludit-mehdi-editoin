@@ -1,0 +1,10 @@
+{
+	"plugin-data":
+	{
+		"name": "خوراک RSS",
+		"description": "این افزونه برای وبسایت شما یک خوراک RSS تولید میکند."
+	},
+	"amount-of-items": "تعداد مطالب",
+	"amount-of-items-to-show-on-the-feed": "تعداد مطالب جهت نمایش در خوراک.",
+	"rss-url": "آدرس وب RSS"
+}

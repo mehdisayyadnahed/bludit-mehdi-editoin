@@ -1,0 +1,15 @@
+{
+	"plugin-data":
+	{
+		"name": "آمار ساده",
+		"description": "نمایش روزانه بازدیدکنندگان در پیشخوان شما."
+	},
+	"visits": "بازدیدها",
+	"visits-today": "بازدیدهای امروز",
+	"unique-visitors-today": "بازدید کنندگان منحصر به فرد امروز",
+	"chart": "چارت",
+	"table": "جدول",
+	"disk-usage" : "استفاده از دیسک",
+	"show-content-stats" : "نمایش وضعیت محتوا",
+	"exclude-administrators-users" : "کاربران با نقش 'مدیر' را حذف کنید"
+}

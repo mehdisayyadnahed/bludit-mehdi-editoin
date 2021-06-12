@@ -1,0 +1,35 @@
+a {
+	color: #40aaa2;
+}
+
+a:hover {
+	color: #2f7e77;
+	text-decoration: none;
+}
+
+/* Form */
+.form-control:focus {
+	box-shadow: none;
+}
+
+/* Tables */
+.table{
+	color: #839496;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+	background-color: #121212 !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+	background-color: #2e2d2b !important;
+}
+
+.table thead th {
+	font-size: 0.8em;
+	text-transform: uppercase!important;
+}
+
+.bg-dark {
+    background-color: #2e2d2b !important;
+}
