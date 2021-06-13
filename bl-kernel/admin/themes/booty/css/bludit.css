@@ -238,12 +238,7 @@ a.text-secondary:focus,a.text-secondary:hover{
 	border-radius: 5px;
 }
 
-.btn-primary:hover {
-	background-color: #7d6406 !important;
-	border-color: #826200 !important;
-}
-
-.btn-primary:focus {
+.btn-primary:hover, .btn-primary:focus {
 	background-color: #7d6406 !important;
 	border-color: #826200 !important;
 }
