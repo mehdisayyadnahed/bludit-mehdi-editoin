@@ -280,6 +280,15 @@
 		// ));
 
 		// echo Bootstrap::formInputText(array(
+		// 	'name'=>'website',
+		// 	'label'=>'Website',
+		// 	'value'=>$user->website(),
+		// 	'class'=>'',
+		// 	'placeholder'=>'',
+		// 	'tip'=>''
+		// ));
+
+		// echo Bootstrap::formInputText(array(
 		// 	'name'=>'instagram',
 		// 	'label'=>'Instagram',
 		// 	'value'=>$user->instagram(),

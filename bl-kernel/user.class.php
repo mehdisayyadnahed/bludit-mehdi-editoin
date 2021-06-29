@@ -165,6 +165,11 @@ class User {
 		return $this->getValue('eitaa');
 	}
 
+	public function website()
+	{
+		return $this->getValue('website');
+	}
+
 	public function telegram()
 	{
 		return $this->getValue('telegram');
@@ -205,6 +210,7 @@ class User {
 		$tmp['youtube'] 		= $this->youtube();
 		$tmp['instagram'] 		= $this->instagram();
 		$tmp['eitaa'] 		= $this->eitaa();
+		$tmp['website'] 		= $this->website();
 		$tmp['telegram'] 	= $this->telegram();
 		$tmp['aparat']	= $this->aparat();
 		$tmp['email']	= $this->email();

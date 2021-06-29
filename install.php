@@ -393,6 +393,7 @@ function install($adminPassword, $timezone)
 		'virgool'=>'',
 		'eitaa'=>'test_link!',
 		'telegram'=>'',
+		'website'=>'',
 		'dateFormat'=>'Y/m/d',
 		'extremeFriendly'=>true,
 		'autosaveInterval'=>2,
@@ -430,7 +431,8 @@ function install($adminPassword, $timezone)
 			'rss'=>'',
 			'telegram'=>'',
 			'instagram'=>'',
-			'eitaa'=>''
+			'eitaa'=>'',
+			'website'=>''
 		)
 	);
 	file_put_contents(PATH_DATABASES.'users.php', $dataHead.json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);

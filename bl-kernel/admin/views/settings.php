@@ -441,6 +441,15 @@
 		));
 
 		echo Bootstrap::formInputText(array(
+			'name'=>'website',
+			'label'=>'Website',
+			'value'=>$site->website(),
+			'class'=>'',
+			'placeholder'=>'',
+			'tip'=>''
+		));
+
+		echo Bootstrap::formInputText(array(
 			'name'=>'email',
 			'label'=>'Email',
 			'value'=>$site->email(),

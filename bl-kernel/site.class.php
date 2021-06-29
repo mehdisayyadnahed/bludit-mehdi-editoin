@@ -36,6 +36,7 @@ class Site extends dbJSON {
 		'aparat'=>		'',
 		'email'=>		'',
 		'github'=>			'',
+		'website'=>			'',
 		'orderBy'=>		'date', // date or position
 		'extremeFriendly'=>	true,
 		'autosaveInterval'=>	2, // minutes
@@ -191,6 +192,11 @@ class Site extends dbJSON {
 	public function eitaa()
 	{
 		return $this->getField('eitaa');
+	}
+
+	public function website()
+	{
+		return $this->getField('website');
 	}
 
 	public function telegram()

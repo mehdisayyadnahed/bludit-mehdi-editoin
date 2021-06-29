@@ -24,6 +24,7 @@ class Users extends dbJSON {
 		'youtube'=>'',
 		'instagram'=>'',
 		'eitaa'=>'',
+		'website'=>'',
 		'telegram'=>'',
 		'aparat'=>'',
 		'github'=>''

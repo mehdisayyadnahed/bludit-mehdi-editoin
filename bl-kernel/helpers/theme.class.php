@@ -17,6 +17,7 @@ class Theme {
 			'youtube'=>'YouTube',
 			'aparat'=>'Aparat',
 			'facebook'=>'Facebook',
+			'website'=>'Website',
 			'email'=>'Email',
 			'rss'=>'RSS'
 			
