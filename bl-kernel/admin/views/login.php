@@ -12,7 +12,7 @@ echo Bootstrap::formOpen(array());
 
 	echo '
 	<div class="form-group">
-		<input type="text" value="'.(isset($_POST['username'])?$_POST['username']:'').'" class="form-control form-control-lg" id="jsusername" name="username" placeholder="'.$L->g('Username').'" autofocus>
+		<input type="text" value="'.(isset($_POST['username'])?Sanitize::html($_POST['username']):'').'" class="form-control form-control-lg" id="jsusername" name="username" placeholder="'.$L->g('Username').'" autofocus>
 	</div>
 	';
 
