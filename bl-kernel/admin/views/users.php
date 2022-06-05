@@ -18,7 +18,7 @@ echo '
 			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col">'.$L->g('Nickname').'</th>
 			<th class="border-bottom-0" scope="col">'.$L->g('Status').'</th>
 			<th class="border-bottom-0" scope="col">'.$L->g('Role').'</th>
-			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col">'.$L->g('Registered').'</th>
+			<th class="border-bottom-0 d-none d-lg-table-cell" style="text-align: center" scope="col">'.$L->g('Registered').'</th>
 		</tr>
 ';
 
@@ -43,7 +43,7 @@ foreach ($list as $username) {
 		} else {
 			echo '<td>'.$L->g('Reader').'</td>';
 		}
-		echo '<td class="d-none d-lg-table-cell">'.$user->registered().'</td>';
+		echo '<td class="d-none d-lg-table-cell" style="text-align: center">'.$user->registered().'</td>';
 		echo '</tr>';
 	} catch (Exception $e) {
 		// Continue
