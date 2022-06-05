@@ -17,7 +17,7 @@ else{
 		<tbody>
 			<tr>
 				<th class="border-bottom-0" scope="col">'.$L->g('Name').'</th>
-				<th class="border-bottom-0" scope="col">'.$L->g('URL').'</th>
+				<th class="border-bottom-0" style="text-align: center" scope="col">'.$L->g('URL').'</th>
 			</tr>
 	';
 }
@@ -26,7 +26,7 @@ foreach ($categories->keys() as $key) {
 	$category = new Category($key);
 	echo '<tr>';
 	echo '<td><a href="'.HTML_PATH_ADMIN_ROOT.'edit-category/'.$key.'">'.$category->name().'</a></td>';
-	echo '<td><a href="'.$category->permalink().'">'.$url->filters('category', false).$key.'</a></td>';
+	echo '<td style="text-align: center"><a href="'.$category->permalink().'">'.$url->filters('category', false).$key.'</a></td>';
 	echo '</tr>';
 }
 
