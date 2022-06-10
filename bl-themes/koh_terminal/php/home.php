@@ -61,7 +61,9 @@
                 
     			<div class="card mt-2">
     				<div class="card-header"><?php echo $page->category(); ?></div>
-    				<img src="" alt="">
+				<?php //if ($page->coverImage()): ?>
+					<!-- <img class="card-img-top mb-3 rounded-0" alt="Cover Image" src="<?php //echo $page->coverImage(); ?>"/> -->
+				<?php //endif ?>
     				<div class="card-body">
     					<div class="card-title">
     					    <!-- <h3 class="text-primary"><?php #echo $page->title(); ?></h3> -->
