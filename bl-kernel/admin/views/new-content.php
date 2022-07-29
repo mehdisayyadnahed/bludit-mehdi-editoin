@@ -271,7 +271,7 @@ echo Bootstrap::formOpen(array(
 				});
 
 				// Datepicker
-				$("#jsdate").datetimepicker({format:DB_DATE_FORMAT});
+				//$("#jsdate").datetimepicker({format:DB_DATE_FORMAT});
 
 
 			});
